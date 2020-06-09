@@ -1,0 +1,36 @@
+﻿@{
+    ViewData["Title"] = "Contact";
+}
+<h2>Tower Levels</h2>
+
+<form>
+    <div class="col-md-6">
+        @for (int i = 1; i < 21; i++)
+        {
+            <div class="row">
+                <div class="form-group">
+                    <label for="txt@(i)" class="col-sm-2 col-form-label"  >Room @i</label>
+                    <div class="col-sm-10">
+                        <input type="text" id="txt@(i)" class="form-control">
+                    </div>
+                </div>
+            </div>
+        }
+
+    </div>
+    <div class="col-md-6">
+        @for (int i = -20; i < 0; i++)
+        {
+        <div class="row">
+            <div class="form-group">
+                <label for="txt@(i)" class="col-sm-2 col-form-label">Room @i</label>
+                <div class="col-sm-10">
+                    <input type="text" id="txt@(i)" class="form-control">
+                </div>
+            </div>
+        </div>
+        }
+    </div>
+
+
+</form>

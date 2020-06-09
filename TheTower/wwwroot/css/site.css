@@ -36,12 +36,15 @@ body {
     }
 }
 
-
+label{
+    text-align:right;
+}
 .rollWindow-Content {
     margin: 1%;
     padding: 5%;
-    padding-bottom: 20%;
-    background: round rgba(244, 244, 244, 0.84);
+    padding-bottom:10%;
+    height: auto;
+    background: round rgba(230, 230, 230, 0.84);
 }
 
 button{
@@ -49,7 +52,7 @@ button{
 }
 
 .txtCurrentRoll{
-    margin-top:2%;
+    margin-top: 10px;
     max-width:100px;
     height: 60px;
 }

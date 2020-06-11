@@ -9,6 +9,10 @@ namespace TheTower.Models
     {
         public int ID { get; set; }
         public ICollection<RoomNumber> LevelSetup { get; set; }
+        public Session()
+        {
+
+        }
 
     }
 }

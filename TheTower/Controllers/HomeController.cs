@@ -10,6 +10,13 @@ namespace TheTower.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly TowerContext _context;
+
+        public HomeController(TowerContext context)
+        {
+            _context = context;
+        }
+
         public IActionResult Index()
         {
             return View();
@@ -18,8 +25,10 @@ namespace TheTower.Controllers
         public IActionResult About()
         {
             ViewData["Message"] = "Your application description page.";
-
-            return View();
+            var results = _context.Monster
+                .OrderBy(m => m.MonsterCR)
+                .ToList();
+            return View(results);
         }
 
         public IActionResult Contact()

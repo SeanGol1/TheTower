@@ -7,19 +7,24 @@ namespace TheTower.Models
 {
     public class Monster
     {
+        public int ID { get; set; }
         public string MonsterCR { get; set; }
         public string MonsterName { get; set; }
         public string MMPage { get; set; }
         public string MonsterRdNumber { get; set; }
 
-        public string imagepath { get; set; }
+        public string ImagePath { get; set; }
 
+        public Monster()
+        {
+
+        }
         public Monster(string _MonsterCR, string _name, string _page)
         {
             MonsterCR = _MonsterCR;
             MonsterName = _name;
             MMPage = _page;
-            imagepath = MonsterName + ".png";
+            ImagePath = MonsterName + ".png";
 
         }
 

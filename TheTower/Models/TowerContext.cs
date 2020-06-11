@@ -28,7 +28,7 @@ namespace TheTower.Models
         public DbSet<Item> RoomNumber { get; set; }
         public DbSet<Monster> Session { get; set; }
 
-
+        
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -43,5 +43,6 @@ namespace TheTower.Models
                     ID = 1
                 });
         }
+        
     }
 }

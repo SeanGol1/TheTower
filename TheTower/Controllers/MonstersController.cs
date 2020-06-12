@@ -53,7 +53,7 @@ namespace TheTower.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,MonsterCR,MonsterName,MMPage,MonsterRdNumber,ImagePath")] Monster monster)
+        public async Task<IActionResult> Create([Bind("ID,ChallengeRating,Name,Source,RollNumber,ImagePath")] Monster monster)
         {
             if (ModelState.IsValid)
             {
@@ -85,7 +85,7 @@ namespace TheTower.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,MonsterCR,MonsterName,MMPage,MonsterRdNumber,ImagePath")] Monster monster)
+        public async Task<IActionResult> Edit(int id, [Bind("ID,ChallengeRating,Name,Source,RollNumber,ImagePath")] Monster monster)
         {
             if (id != monster.ID)
             {

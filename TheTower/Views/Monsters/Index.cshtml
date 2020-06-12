@@ -13,16 +13,16 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.MonsterCR)
+                @Html.DisplayNameFor(model => model.ChallengeRating)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.MonsterName)
+                @Html.DisplayNameFor(model => model.Name)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.MMPage)
+                @Html.DisplayNameFor(model => model.Source)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.MonsterRdNumber)
+                @Html.DisplayNameFor(model => model.RollNumber)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.ImagePath)
@@ -34,16 +34,16 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.MonsterCR)
+                @Html.DisplayFor(modelItem => item.ChallengeRating)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.MonsterName)
+                @Html.DisplayFor(modelItem => item.Name)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.MMPage)
+                @Html.DisplayFor(modelItem => item.Source)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.MonsterRdNumber)
+                @Html.DisplayFor(modelItem => item.RollNumber)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.ImagePath)

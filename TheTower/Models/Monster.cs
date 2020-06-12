@@ -8,26 +8,26 @@ namespace TheTower.Models
     public class Monster
     {
         public int ID { get; set; }
-        public string MonsterCR { get; set; }
-        public string MonsterName { get; set; }
-        public string MMPage { get; set; }
-        public string MonsterRdNumber { get; set; }
-
+        public int ChallengeRating { get; set; }
+        public string Name { get; set; }
+        public string Source { get; set; }
+        public int RollNumber { get; set; }
         public string ImagePath { get; set; }
 
         public Monster()
         {
 
         }
-        public Monster(string _MonsterCR, string _name, string _page)
+        public Monster(int _MonsterCR,int _number, string _name, string _page)
         {
-            MonsterCR = _MonsterCR;
-            MonsterName = _name;
-            MMPage = _page;
-            ImagePath = MonsterName + ".png";
+            ChallengeRating = _MonsterCR;
+            Name = _name;
+            Source = _page;
+            RollNumber = _number;
+            ImagePath = Name + ".png";
 
         }
-
+        /*
         public Monster(string _MonsterCR, string _name, string _page, string _number)
         {
             MonsterCR = _MonsterCR;
@@ -35,6 +35,6 @@ namespace TheTower.Models
             MMPage = _page;
             MonsterRdNumber = _number;
 
-        }
+        }*/
     }
 }

@@ -8,16 +8,18 @@ namespace TheTower.Models
     public class Biome
     {
         public int ID { get; set; }
-        public string BiomeNumber { get; set; }
+        public string Name { get; set; }
+        public string RollNumber { get; set; }
         public string Description { get; set; }
         public Biome()
         {
 
         }
-        public Biome(String _number, String _desc)
+        public Biome(string _name, String _number, String _desc)
         {
-           // BiomeNumber = _number;
-           // Description = _desc;
+            Name = _name;
+            RollNumber = _number;
+            Description = _desc;
         }
     }
 }

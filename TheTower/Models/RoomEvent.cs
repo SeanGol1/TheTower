@@ -10,6 +10,7 @@ namespace TheTower.Models
         public int ID { get; set; }
         public String RoomNumber { get; set; }
         public String EventName { get; set; }
+        public ICollection<Monster> Monster { get; set; }
         public RoomEvent()
         {
 

@@ -26,7 +26,7 @@ namespace TheTower.Controllers
         {
             ViewData["Message"] = "Your application description page.";
             var results = _context.Monster
-                .OrderBy(m => m.MonsterCR)
+                .OrderBy(m => m.ChallengeRating)
                 .ToList();
             return View(results);
         }

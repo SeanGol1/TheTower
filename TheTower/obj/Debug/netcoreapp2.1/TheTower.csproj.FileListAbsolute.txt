@@ -62,6 +62,16 @@ C:\Users\seang\source\repos\The Tower App\TheTower\obj\Debug\netcoreapp2.1\TheTo
 C:\Users\seang\source\repos\The Tower App\TheTower\obj\Debug\netcoreapp2.1\TheTower.dll
 C:\Users\seang\source\repos\The Tower App\TheTower\obj\Debug\netcoreapp2.1\TheTower.pdb
 C:\Users\seang\source\repos\The Tower App\TheTower\obj\Debug\netcoreapp2.1\TheTower.csproj.CopyComplete
+C:\Users\seang\source\repos\The Tower App\TheTower\obj\Debug\netcoreapp2.1\Razor\Views\Levels\Create.g.cshtml.cs
+C:\Users\seang\source\repos\The Tower App\TheTower\obj\Debug\netcoreapp2.1\Razor\Views\Levels\Delete.g.cshtml.cs
+C:\Users\seang\source\repos\The Tower App\TheTower\obj\Debug\netcoreapp2.1\Razor\Views\Levels\Details.g.cshtml.cs
+C:\Users\seang\source\repos\The Tower App\TheTower\obj\Debug\netcoreapp2.1\Razor\Views\Levels\Edit.g.cshtml.cs
+C:\Users\seang\source\repos\The Tower App\TheTower\obj\Debug\netcoreapp2.1\Razor\Views\Levels\Index.g.cshtml.cs
+C:\Users\seang\source\repos\The Tower App\TheTower\obj\Debug\netcoreapp2.1\Razor\Views\Sessions\Create.g.cshtml.cs
+C:\Users\seang\source\repos\The Tower App\TheTower\obj\Debug\netcoreapp2.1\Razor\Views\Sessions\Delete.g.cshtml.cs
+C:\Users\seang\source\repos\The Tower App\TheTower\obj\Debug\netcoreapp2.1\Razor\Views\Sessions\Details.g.cshtml.cs
+C:\Users\seang\source\repos\The Tower App\TheTower\obj\Debug\netcoreapp2.1\Razor\Views\Sessions\Edit.g.cshtml.cs
+C:\Users\seang\source\repos\The Tower App\TheTower\obj\Debug\netcoreapp2.1\Razor\Views\Sessions\Index.g.cshtml.cs
 C:\Users\seang\source\repos\The Tower App\TheTower\obj\Debug\netcoreapp2.1\Razor\Views\Monsters\Create.g.cshtml.cs
 C:\Users\seang\source\repos\The Tower App\TheTower\obj\Debug\netcoreapp2.1\Razor\Views\Monsters\Delete.g.cshtml.cs
 C:\Users\seang\source\repos\The Tower App\TheTower\obj\Debug\netcoreapp2.1\Razor\Views\Monsters\Details.g.cshtml.cs

@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using TheTower.Models;
 
 namespace TheTower.Models
 {
@@ -26,9 +27,10 @@ namespace TheTower.Models
         public DbSet<MonsterCR> MonsterCR { get; set; }
         public DbSet<Monster> RoomEvent { get; set; }
         public DbSet<Item> RoomNumber { get; set; }
-        public DbSet<Monster> Session { get; set; }
+        public DbSet<Session> Session { get; set; }
+        public DbSet<TheTower.Models.Level> Level { get; set; }
 
-        
+        /*
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -42,7 +44,7 @@ namespace TheTower.Models
                     MMPage = "2233",
                     ID = 1
                 });
-        }
+        }*/
         
     }
 }

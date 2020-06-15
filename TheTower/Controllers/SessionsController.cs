@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using TheTower.Data;
 using TheTower.Models;
 
 namespace TheTower.Controllers
@@ -12,10 +13,12 @@ namespace TheTower.Controllers
     public class SessionsController : Controller
     {
         private readonly TowerContext _context;
+        private readonly TowerRepo _repo;
 
-        public SessionsController(TowerContext context)
+        public SessionsController(TowerContext context, TowerRepo repo)
         {
             _context = context;
+            _repo = repo;
         }
 
         // GET: Sessions
@@ -39,7 +42,8 @@ namespace TheTower.Controllers
                 return NotFound();
             }
 
-            return View(session);
+            var results = _repo.GetSessionLevels(session.ID);
+            return View(results);
         }
 
         // GET: Sessions/Create

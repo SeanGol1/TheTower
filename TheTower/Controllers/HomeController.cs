@@ -48,5 +48,56 @@ namespace TheTower.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+        public IActionResult LevelRoll(int? id)
+        {
+            int RoomMove = 0;           
+
+            switch (id)
+            {
+                case 1:
+                    RoomMove = -6;
+                    break;
+                case 2:
+                    RoomMove = -5;
+                    break;
+                case 3:
+                    RoomMove = -4;
+                    break;
+                case 4:
+                    RoomMove = -3;
+                    break;
+                case 5:
+                    RoomMove = -2;
+                    break;
+                case 6:
+                    RoomMove = -1;
+                    break;
+                case 7:
+                    RoomMove = 1;
+                    break;
+                case 8:
+                    RoomMove = 2;
+                    break;
+                case 9:
+                    RoomMove = 3;
+                    break;
+                case 10:
+                    RoomMove = 4;
+                    break;
+                case 11:
+                    RoomMove = 5;
+                    break;
+                case 12:
+                    RoomMove = 6;
+                    break;
+                default:
+                    RoomMove = 0;
+                    break;
+            }
+
+
+            return View(RoomMove);
+        }
     }
 }

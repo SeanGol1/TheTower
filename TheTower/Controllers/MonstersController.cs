@@ -57,6 +57,7 @@ namespace TheTower.Controllers
         {
             if (ModelState.IsValid)
             {
+                monster.ImagePath = monster.Name + ".jpg";
                 _context.Add(monster);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));

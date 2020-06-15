@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using TheTower.Data;
 using TheTower.Models;
 
 namespace TheTower
@@ -39,6 +40,7 @@ namespace TheTower
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
+            services.AddScoped<TowerRepo>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }

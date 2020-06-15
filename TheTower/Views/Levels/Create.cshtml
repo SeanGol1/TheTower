@@ -29,10 +29,11 @@
                 <input asp-for="Name" class="form-control" />
                 <span asp-validation-for="Name" class="text-danger"></span>
             </div>
-            <!--<div class="form-group">
-        <label asp-for="SessionID" class="control-label"></label>
-        <select asp-for="SessionID" class ="form-control" asp-items="Model.SessionID"></select>
-    </div>-->
+            <div class="form-group">
+                <label asp-for="SessionID" class="control-label"></label>
+                @*<select asp-for="SessionID" class="form-control" asp-items="Model.Session"></select>*@
+                @*@Html.DropDownListFor(s => Model.Session, new SelectList(Model.Session, "Value", "Text"), htmlAttributes: new { @class = "form-control", id = "ID" })*@
+            </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-default" />
             </div>

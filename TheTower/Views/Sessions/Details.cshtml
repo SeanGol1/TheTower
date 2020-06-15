@@ -1,7 +1,9 @@
-﻿@model TheTower.Models.Session
+﻿@model IEnumerable<Level>
 
 @{
     ViewData["Title"] = "Details";
+
+    bool mon = false;
 }
 
 <h2>Details</h2>
@@ -9,28 +11,52 @@
 <div>
     <h4>Session</h4>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.DMName)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.DMName)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.PlayerLevel)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.PlayerLevel)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.PlayerQty)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.PlayerQty)
-        </dd>
-    </dl>
+
+    <h4></h4>
+
+
+    <div class="col-md-6">
+        @for (int i = 1; i < 21; i++)
+        {
+            mon = false;
+            <div class="row">
+                <div class="form-group">
+                    <label for="txt@(i)" class="col-xs-3 col-form-label">Room @i</label>
+                    <div class="col-xs-9 ">
+
+                        @foreach (Level l in Model)
+                        {
+                            if (l.RoomLevel == i)
+                            {
+                                <input type="text" id="txt@(i)" class="form-control" value="@l.Name">
+                                mon = true;
+                            }
+                        }
+                        @if (mon == false)
+                        {
+                            <input type="text" id="txt@(i)" class="form-control">
+                        }
+
+                    </div>
+                </div>
+            </div>
+        }
+
+    </div>
+    <div class="col-md-6">
+        @for (int i = -20; i < 0; i++)
+        {
+            <div class="row">
+                <div class="form-group">
+                    <label for="txt@(i)" class="col-xs-3 col-form-label">Room @i</label>
+                    <div class="col-xs-9">
+                        <input type="text" id="txt@(i)" class="form-control">
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.ID">Edit</a> |
     <a asp-action="Index">Back to List</a>
 </div>

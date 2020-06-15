@@ -48,7 +48,7 @@ namespace TheTower.Controllers
             var lbxItems = _context.Session
                 .Select(s => s.DMName)
                 .ToList();
-            return View(lbxItems);
+            return View();
         }
 
         // POST: Levels/Create
@@ -56,7 +56,7 @@ namespace TheTower.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,RoomLevel,EventID,Name,SessionID")] Level level)
+        public async Task<IActionResult> Create([Bind("ID,RoomLevel,EventID,Name,SessionID,BiomeID")] Level level)
         {
             if (ModelState.IsValid)
             {

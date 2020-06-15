@@ -10,6 +10,7 @@ namespace TheTower.Models
         public int ID { get; set; }
         public int MonsterID { get; set; }
         public int RoomLevel{ get; set; }
+        public int BiomeID { get; set; }
         public int EventID { get; set; }
         public string Name { get; set; }
         public int SessionID { get; set; }

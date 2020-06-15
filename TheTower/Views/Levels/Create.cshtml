@@ -3,43 +3,99 @@
 
 @{
     ViewData["Title"] = "Create";
-    
+
 }
 
-<h2>Create</h2>
-
-<h4>Level</h4>
-<hr />
 <div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="RoomLevel" class="control-label"></label>
-                <input asp-for="RoomLevel" class="form-control" />
-                <span asp-validation-for="RoomLevel" class="text-danger"></span>
+    <div class="col-md-10">
+        <h1>TOWER OF LUCK'N ASSHOLES</h1>
+    </div>
+    <div class="col-md-2">
+        <div class="row">
+            <h3 class="col-xs-6">Current Room:</h3>
+            <div class="col-xs-6">
+                <input class="input-lg txtCurrentRoll" type="text" />
             </div>
-            <div class="form-group">
-                <label asp-for="EventID" class="control-label"></label>
-                <input asp-for="EventID" class="form-control" />
-                <span asp-validation-for="EventID" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Name" class="control-label"></label>
-                <input asp-for="Name" class="form-control" />
-                <span asp-validation-for="Name" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="SessionID" class="control-label"></label>
-                @*<select asp-for="SessionID" class="form-control" asp-items="Model.Session"></select>*@
-                @*@Html.DropDownListFor(s => Model.Session, new SelectList(Model.Session, "Value", "Text"), htmlAttributes: new { @class = "form-control", id = "ID" })*@
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-default" />
-            </div>
-        </form>
+        </div>
     </div>
 </div>
+
+<form asp-controller="Levels" asp-action="Create">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="row rollWindow-Content">
+
+                <h4>Roll for Room (d12)</h4>
+                <div class="row">
+                    <input id="txtRoomRoll" type="text" />
+                    <button type="button" class="btn-info">Gen</button>
+                </div>
+                <h4>+5 Rooms</h4>
+                <h5>You Will be going +5 floors to Room <b>15</b></h5>
+
+
+            </div>
+        </div>
+
+        <div class="col-md-6 ">
+            <div class="row rollWindow-Content">
+                <h4>Roll for Biom (d12)</h4>
+                <div class="row">
+                    @*<input asp-for="BiomeID" type="text" />*@
+                    <button type="button" class="btn-info">Gen</button>
+                </div>
+                <h4>Cave</h4>
+                <h5>Large holes falling about 10 ft into the gound. The room is dimly lit.</h5>
+                <button type="button" class="btn-info">View List</button>
+
+            </div>
+        </div>
+
+    </div>
+
+    <div class="row">
+        <div class="col-md-6 ">
+            <div class="row rollWindow-Content">
+                <h4>Roll for Monster Challenge (d20)</h4>
+                <div class="row">
+                    <input id="txtMonRoll" type="text" />
+                    <button type="button" class="btn-info">Gen</button>
+                </div>
+                <h4>11</h4>
+                <h5>2 Challenge Rating 11 Characters</h5>
+                @*<button type="button" class="btn-info">View List</button>*@
+                <a class="btn-info" asp-controller="Monsters" asp-action="Index">View List</a> |
+            </div>
+        </div>
+        <div class="col-md-6 ">
+            <div class="row rollWindow-Content">
+                <h4>Roll for Monster(d4)</h4>
+                <div class="row">
+                    @*<input asp-for="MonsterID" type="text" />*@
+                    <button type="button" class="btn-info">Gen</button>
+                    <button type="button" class="btn-info">View Stats</button>
+                    <button type="button" class="btn-info">View Image</button>
+                </div>
+                <h4>The Roc</h4>
+                <h5>Gargantuan Monstrosity</h5>
+                <div class="row">
+                    <input type="text" />
+                    <button type="button" class="btn-info">Gen</button>
+                    <button type="button" class="btn-info">View Stats</button>
+                    <button type="button" class="btn-info">View Image</button>
+                </div>
+                <h4>The Roc</h4>
+                <h5>Gargantuan Monstrosity</h5>
+                <button type="button" class="btn-info">View List</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <button type="submit" class="btn btn-primary">Generate Level</button>
+    </div>
+
+</form>
 
 <div>
     <a asp-action="Index">Back to List</a>

@@ -85,7 +85,7 @@ using TheTower.Models;
 ");
             EndContext();
             BeginContext(456, 3024, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "b096fbf600604b7eaa6afe6dc4227b5e", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "ea27273a30ee48b497dd7c4bac0b5581", async() => {
                 BeginContext(506, 660, true);
                 WriteLiteral(@"
     <div class=""row"">
@@ -138,7 +138,7 @@ using TheTower.Models;
                 WriteLiteral("                ");
                 EndContext();
                 BeginContext(2124, 78, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "601ce9f2576b4aa3a5fc7055dd752aaf", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "b9a0efd161034a8384ce67b84c964fc1", async() => {
                     BeginContext(2189, 9, true);
                     WriteLiteral("View List");
                     EndContext();
@@ -210,7 +210,7 @@ using TheTower.Models;
             WriteLiteral("\r\n\r\n<div>\r\n    ");
             EndContext();
             BeginContext(3495, 38, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "f80e2839aa45430c8650ef30543c109f", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "63fae4b7a7464cde9256c81e31564c5a", async() => {
                 BeginContext(3517, 12, true);
                 WriteLiteral("Back to List");
                 EndContext();

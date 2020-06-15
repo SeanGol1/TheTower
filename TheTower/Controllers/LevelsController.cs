@@ -45,9 +45,7 @@ namespace TheTower.Controllers
         // GET: Levels/Create
         public IActionResult Create()
         {
-            var lbxItems = _context.Session
-                .Select(s => s.DMName)
-                .ToList();
+            
             return View();
         }
 

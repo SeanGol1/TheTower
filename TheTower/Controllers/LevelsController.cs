@@ -57,7 +57,7 @@ namespace TheTower.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,RoomLevel,EventID,Name,SessionID,BiomeID,CRLevel,MonsterID")] Level level)
+        public async Task<IActionResult> Create([Bind("ID,RoomLevel,EventID,Name,SessionID,BiomeID,CRLevel,MonsterID,CurrentRoom")] Level level)
         {
             if (ModelState.IsValid)
             {

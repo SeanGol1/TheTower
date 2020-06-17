@@ -70,7 +70,7 @@ using TheTower.Models;
             WriteLiteral("\r\n<h2>Details</h2>\r\n\r\n<div>\r\n    <div class=\"row\">\r\n        <div class=\"col-md-4\">\r\n            <h4>Session</h4>\r\n        </div>\r\n        \r\n        <div>\r\n            ");
             EndContext();
             BeginContext(312, 92, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "9700b8db69e84fd9b0b9ae29603220d4", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "af65a60966084225bea0600ba651761a", async() => {
                 BeginContext(384, 16, true);
                 WriteLiteral("Create New Level");
                 EndContext();
@@ -253,7 +253,7 @@ WriteAttributeValue("", 1757, i, 1757, 4, false);
             WriteLiteral("    </div>\r\n</div>\r\n<div>\r\n    ");
             EndContext();
             BeginContext(1900, 38, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "567407eca9ea4150947eef1a07a11dfa", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "6dc6142e5a6043539d5ca11699b662b5", async() => {
                 BeginContext(1922, 12, true);
                 WriteLiteral("Back to List");
                 EndContext();

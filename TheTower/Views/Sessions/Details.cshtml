@@ -55,11 +55,24 @@
     <div class="col-md-6">
         @for (int i = -20; i < 0; i++)
         {
+            mon = false;
             <div class="row">
                 <div class="form-group">
                     <label for="txt@(i)" class="col-xs-3 col-form-label">Room @i</label>
                     <div class="col-xs-9">
-                        <input type="text" id="txt@(i)" class="form-control">
+
+                        @foreach (Level l in Model)
+                        {
+                            if (l.RoomLevel == i)
+                            {
+                                <input type="text" id="txt@(i)" class="form-control" value="@l.Name">
+                                mon = true;
+                            }
+                        }
+                        @if (mon == false)
+                        {
+                            <input type="text" id="txt@(i)" class="form-control">
+                        }
                     </div>
                 </div>
             </div>

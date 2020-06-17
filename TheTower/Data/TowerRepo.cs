@@ -23,7 +23,7 @@ namespace TheTower.Data
 
         public int GetCRLevel(int _sessionid, int _CRRoll)
         {
-            
+
             var CRLevel = from s in _ctx.Session
                           join mcr in _ctx.MonsterCR on s.MonsterCRID equals mcr.ID
                           join cr in _ctx.CRRoll on mcr.ID equals cr.MonsterCRID
@@ -55,6 +55,28 @@ namespace TheTower.Data
                          select m.Name;
 
             return result.FirstOrDefault();
+        }
+
+        public int GetCurrentRoomNumber(int _sessionID)
+        {
+            var result = from s in _ctx.Session
+                         where s.ID == _sessionID
+                         select s.CurrentLevel;
+
+            return result.FirstOrDefault();
+        }
+
+        public void UpdateCurrentRoomNumber(int _sessionid, int _newLevel)
+        {
+            var result = from s in _ctx.Session
+                         where s.ID == _sessionid
+                         select s;
+
+            foreach (Session item in result)
+            {
+                item.CurrentLevel = _newLevel;
+            }
+            
         }
 
     }

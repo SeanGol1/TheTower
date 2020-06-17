@@ -15,7 +15,7 @@ namespace TheTower.Controllers
         private readonly TowerContext _context;
         private readonly TowerRepo _repo;
 
-        public LevelsController(TowerContext context,TowerRepo repo)
+        public LevelsController(TowerContext context, TowerRepo repo)
         {
             _context = context;
             _repo = repo;
@@ -46,22 +46,35 @@ namespace TheTower.Controllers
         }
 
         // GET: Levels/Create
-        public IActionResult Create()
+        [Route("Levels/Create/{id}")]
+        public async Task<IActionResult> Create(int? id)
         {
-            
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var session = await _context.Session
+                .FirstOrDefaultAsync(s => s.ID == id);
+
+            if (session == null)
+            {
+                return NotFound();
+            }
+
+
             return View();
         }
 
         // POST: Levels/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,RoomLevel,EventID,Name,SessionID,BiomeID,CRLevel,MonsterID,CurrentRoom")] Level level)
+        [Route("Levels/Create/{id}")]
+        public async Task<IActionResult> Create(int id, [Bind("RoomLevel,EventID,Name,SessionID,BiomeID,CRLevel,MonsterID,CurrentRoom")] Level level)
         {
             if (ModelState.IsValid)
             {
-                level.SessionID = 1;
+                level.SessionID = id;
                 level.CRLevel = _repo.GetCRLevel(level.SessionID, level.CRLevel);
                 level.MonsterID = _repo.GetMonsterIDbyRoll(level.MonsterID, level.CRLevel);
                 level.Name = _repo.GetMonsterName(level.MonsterID);
@@ -111,10 +124,13 @@ namespace TheTower.Controllers
                         break;
                 }
 
-                //currentroom
-                level.RoomLevel= 0 + RoomMove;
+                
+                level.RoomLevel = _repo.GetCurrentRoomNumber(level.SessionID) + RoomMove;
 
-                        _context.Add(level);
+                //Edit DB Session Current Room
+                _repo.UpdateCurrentRoomNumber(level.SessionID,level.RoomLevel);
+
+                _context.Add(level);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }

@@ -12,6 +12,8 @@ namespace TheTower.Models
         public int PlayerLevel { get; set; }
         public int PlayerQty { get; set; }
         public ICollection<Level> LevelSetup { get; set; }
+        public int MonsterCRID { get; set; }
+        public int CurrentLevel { get; set; }
         public Session()
         {
 

@@ -13,6 +13,7 @@ namespace TheTower.Models
         public int BiomeID { get; set; }
         public int EventID { get; set; }
         public string Name { get; set; }
+        public int CRLevel { get; set; }
         public int SessionID { get; set; }
         //public ICollection<Session> Session { get; set; }
         public Level()

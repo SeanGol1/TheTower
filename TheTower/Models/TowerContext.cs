@@ -28,6 +28,7 @@ namespace TheTower.Models
         public DbSet<Monster> RoomEvent { get; set; }
         public DbSet<Item> RoomNumber { get; set; }
         public DbSet<Session> Session { get; set; }
+        public DbSet<CRRoll> CRRoll { get; set; }
         public DbSet<TheTower.Models.Level> Level { get; set; }
 
         /*

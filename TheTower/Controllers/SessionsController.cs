@@ -61,6 +61,11 @@ namespace TheTower.Controllers
         {
             if (ModelState.IsValid)
             {
+                int CR = session.PlayerLevel * session.PlayerQty;
+                if(CR == 28)
+                {
+                    session.MonsterCRID = 1;
+                }
                 _context.Add(session);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));

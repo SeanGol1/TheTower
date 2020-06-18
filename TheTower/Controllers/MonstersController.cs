@@ -21,7 +21,7 @@ namespace TheTower.Controllers
         // GET: Monsters
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Monster.ToListAsync());
+            return View(await _context.Monster.OrderBy(m => m.RollNumber).OrderBy(m => m.ChallengeRating).ToListAsync());
         }
 
         // GET: Monsters/Details/5

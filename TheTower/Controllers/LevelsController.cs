@@ -28,13 +28,12 @@ namespace TheTower.Controllers
             return View(await _context.Level.ToListAsync());
         }
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
+
         public ActionResult GetNewLevel(int roll)
         {
-            
-            int RoomMove = 0;
+            List<int> model = null;
 
+            int RoomMove = 0;
             switch (roll)
             {
                 case 1:
@@ -78,12 +77,45 @@ namespace TheTower.Controllers
                     break;
             }
 
-
             int NewRoom = roll + RoomMove;
 
+            model.Add(NewRoom);
+            model.Add(RoomMove);
             ViewBag.vbRoomMove = RoomMove;
             ViewBag.vbNewRoom = NewRoom;
-            return View();
+
+
+            return PartialView("RoomNumberPartialView", model);
+        }
+
+        public ActionResult GetNewBiome(int roll)
+        {
+            List<Biome> model = null;
+
+            var query = from b in _context.Biome
+                        where b.RollNumber == roll
+                        select b;
+            model = query.ToList();
+
+
+
+
+            return PartialView("BiomeItemView", model);
+        }
+
+        public ActionResult GetNewEvent(int roll)
+        {
+            List<Event> model = null;
+
+            var query = from e in _context.Event
+                        where e.RollNumber == roll
+                        select e;
+            model = query.ToList();
+
+
+
+
+            return PartialView("_EventItemView", model);
         }
 
         // GET: Levels/Details/5
@@ -122,7 +154,7 @@ namespace TheTower.Controllers
             }
 
             ViewBag.CRoomLevel = session.CurrentLevel;
-            
+
 
             return View();
         }
@@ -185,11 +217,11 @@ namespace TheTower.Controllers
                         break;
                 }
 
-                
+
                 level.RoomLevel = _repo.GetCurrentRoomNumber(level.SessionID) + RoomMove;
 
                 //Edit DB Session Current Room
-                _repo.UpdateCurrentRoomNumber(level.SessionID,level.RoomLevel);
+                _repo.UpdateCurrentRoomNumber(level.SessionID, level.RoomLevel);
 
                 _context.Add(level);
                 await _context.SaveChangesAsync();

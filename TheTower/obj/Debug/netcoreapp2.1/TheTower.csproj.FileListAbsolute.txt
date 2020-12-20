@@ -77,3 +77,6 @@ C:\Users\seang\source\repos\The Tower App\TheTower\obj\Debug\netcoreapp2.1\Razor
 C:\Users\seang\source\repos\The Tower App\TheTower\obj\Debug\netcoreapp2.1\Razor\Views\Monsters\Details.g.cshtml.cs
 C:\Users\seang\source\repos\The Tower App\TheTower\obj\Debug\netcoreapp2.1\Razor\Views\Monsters\Edit.g.cshtml.cs
 C:\Users\seang\source\repos\The Tower App\TheTower\obj\Debug\netcoreapp2.1\Razor\Views\Monsters\Index.g.cshtml.cs
+C:\Users\seang\source\repos\The Tower App\TheTower\obj\Debug\netcoreapp2.1\Razor\Views\Shared\RoomNumberPartialView.g.cshtml.cs
+C:\Users\seang\source\repos\The Tower App\TheTower\obj\Debug\netcoreapp2.1\Razor\Views\Shared\_EventItemView.g.cshtml.cs
+C:\Users\seang\source\repos\The Tower App\TheTower\obj\Debug\netcoreapp2.1\Razor\Views\Shared\BiomeItemView.g.cshtml.cs

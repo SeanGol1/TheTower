@@ -5,10 +5,7 @@
     //ViewData["Title"] = "Create";
 
 }
-<script>
 
-
-</script>
 <div class="row">
     <div class="col-md-10">
         <h1>TOWER OF LUCK'N ASSHOLES</h1>
@@ -30,13 +27,15 @@
 
                 <h4>Roll for Room (d12)</h4>
                 <div class="row">
-                    <input asp-for="RoomLevel" id="txtRoomRoll" type="text"/>
-                    <button type="button" class="btn btn-info" onclick="location.href='@Url.Action("GetNewLevel", "Levels", "txtRoomRoll")'">Gen</button>
+                    <input asp-for="RoomLevel" id="txtRoomRoll" type="text" /> <!--onclick="location.href='@Url.Action("GetNewLevel", "Levels", "txtRoomRoll")'"-->
+                    <button type="button" class="btn btn-info" id="btnRoomGen">Gen</button>
                 </div>
-                <h4 id="hRoomMove">@ViewBag.vbRoomMove</h4>
-                <h5>Your Next Floor <b id="hNextRoom">@ViewBag.vbNextRoom</b></h5>
-                <button type="button" class="btn btn-info">View List</button>
 
+                <div id="divNewRoom">
+                    <h4 id="hRoomMove">@ViewBag.vbRoomMove</h4>
+                    <h5>Your Next Floor <b id="hNextRoom">@ViewBag.vbNextRoom</b></h5>
+                    <button type="button" class="btn btn-info">View List</button>
+                </div>
             </div>
         </div>
 
@@ -44,11 +43,13 @@
             <div class="row rollWindow-Content">
                 <h4>Roll for Biom (d12)</h4>
                 <div class="row">
-                    <input asp-for="BiomeID" type="text" />
-                    <button type="button" class="btn btn-info">Gen</button>
+                    <input asp-for="BiomeID" id="txtBiome" type="text" />
+                    <button type="button" id="btnBiomeGen" class="btn btn-info">Gen</button>
                 </div>
-                <h4>Cave</h4>
-                <h5>Large holes falling about 10 ft into the gound. The room is dimly lit.</h5>
+                <div id="divBiomeDetails">
+                    <h4>Cave</h4>
+                    <h5>Large holes falling about 10 ft into the gound. The room is dimly lit.</h5>
+                </div>
                 <button type="button" class="btn btn-info">View List</button>
             </div>
         </div>
@@ -56,11 +57,13 @@
             <div class="row rollWindow-Content">
                 <h4>Roll for Event (d8)</h4>
                 <div class="row">
-                    <input asp-for="EventID" type="text" />
-                    <button type="button" class="btn btn-info">Gen</button>
+                    <input asp-for="EventID" id="txtEvent" type="text" />
+                    <button type="button" id="btnEventGen" class="btn btn-info">Gen</button>
                 </div>
-                <h4>Reverse Gravity</h4>
-                <h5>Gravity is Reversed</h5>
+                <div id="divEventDetails">
+                    <h4>Reverse Gravity</h4>
+                    <h5>Gravity is Reversed</h5>
+                </div>
                 <button type="button" class="btn btn-info">View List</button>
 
             </div>
@@ -109,3 +112,30 @@
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
+
+<script>
+    $(document).ready(function () {
+        $("#btnRoomGen").click(function () {            
+            var roomroll = $("#txtRoomRoll").val();
+            $("#divNewRoom").load("/Levels/GetNewLevel",
+                { roll: roomroll });
+        });
+    });
+
+       $(document).ready(function () {
+        $("#btnBiomeGen").click(function () {            
+            var Biomeroll = $("#txtBiome").val();
+            $("#divBiomeDetails").load("/Levels/GetNewBiome",
+                { roll: Biomeroll });
+        });
+    });
+
+    $(document).ready(function () {
+        $("#btnEventGen").click(function () {            
+            var Eventroll = $("#txtEvent").val();
+            $("#divEventDetails").load("/Levels/GetNewEvent",
+                { roll: Eventroll });
+        });
+    });
+
+</script>

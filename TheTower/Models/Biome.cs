@@ -9,13 +9,13 @@ namespace TheTower.Models
     {
         public int ID { get; set; }
         public string Name { get; set; }
-        public string RollNumber { get; set; }
+        public int RollNumber { get; set; }
         public string Description { get; set; }
         public Biome()
         {
 
         }
-        public Biome(string _name, String _number, String _desc)
+        public Biome(string _name, int _number, String _desc)
         {
             Name = _name;
             RollNumber = _number;

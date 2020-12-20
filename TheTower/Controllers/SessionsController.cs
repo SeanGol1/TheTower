@@ -43,6 +43,8 @@ namespace TheTower.Controllers
             }
 
             var results = _repo.GetSessionLevels(session.ID);
+
+            ViewBag.CRoomLevel = session.CurrentLevel;
             return View(results);
         }
 
@@ -68,7 +70,7 @@ namespace TheTower.Controllers
                 }
                 _context.Add(session);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Details", "Sessions", new { id = session.ID });
             }
             return View(session);
         }

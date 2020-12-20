@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using TheTower.Data;
 using TheTower.Models;
+using System.Net;
 
 namespace TheTower.Controllers
 {
@@ -25,6 +26,64 @@ namespace TheTower.Controllers
         public async Task<IActionResult> Index()
         {
             return View(await _context.Level.ToListAsync());
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult GetNewLevel(int roll)
+        {
+            
+            int RoomMove = 0;
+
+            switch (roll)
+            {
+                case 1:
+                    RoomMove = -6;
+                    break;
+                case 2:
+                    RoomMove = -5;
+                    break;
+                case 3:
+                    RoomMove = -4;
+                    break;
+                case 4:
+                    RoomMove = -3;
+                    break;
+                case 5:
+                    RoomMove = -2;
+                    break;
+                case 6:
+                    RoomMove = -1;
+                    break;
+                case 7:
+                    RoomMove = 1;
+                    break;
+                case 8:
+                    RoomMove = 2;
+                    break;
+                case 9:
+                    RoomMove = 3;
+                    break;
+                case 10:
+                    RoomMove = 4;
+                    break;
+                case 11:
+                    RoomMove = 5;
+                    break;
+                case 12:
+                    RoomMove = 6;
+                    break;
+                default:
+                    RoomMove = 0;
+                    break;
+            }
+
+
+            int NewRoom = roll + RoomMove;
+
+            ViewBag.vbRoomMove = RoomMove;
+            ViewBag.vbNewRoom = NewRoom;
+            return View();
         }
 
         // GET: Levels/Details/5
@@ -62,6 +121,8 @@ namespace TheTower.Controllers
                 return NotFound();
             }
 
+            ViewBag.CRoomLevel = session.CurrentLevel;
+            
 
             return View();
         }
@@ -132,7 +193,7 @@ namespace TheTower.Controllers
 
                 _context.Add(level);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Details", "Sessions", new { id = level.SessionID });
             }
             return View(level);
         }

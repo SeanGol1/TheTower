@@ -13,75 +13,93 @@
 
 }
 
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+        var divname = document.getElementById("txt" + @ViewBag.CRoomLevel);
+        divname.style.backgroundColor = "Green";
+        divname.style.color = "white";
+
+});
+
+
+</script>
+
 <h2>Details</h2>
 
 <div>
     <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-2">
             <h4>Session</h4>
         </div>
+        <div class="col-md-8">
+            <label for="txtCurrentRoom" class="col-md-6">Current Room =</label>
+            <input type="text" class="form-control" id="txtCurrentRoom" value="@ViewBag.CRoomLevel" style="max-width : 50px;" />
 
-        <div>
+        </div>
+        <div class="col-md-2">
             <a class="btn btn-success" asp-controller="Levels" asp-action="Create">Create New Level</a>
         </div>
 
-        <h4></h4>
-    </div>
-
-
-    <div class="col-md-6">
-        @for (int i = 1; i < 21; i++)
-        {
-            mon = false;
-            <div class="row">
-                <div class="form-group">
-                    <label for="txt@(i)" class="col-xs-3 col-form-label">Room @i</label>
-                    <div class="col-xs-9 ">
-
-                        @foreach (Level l in Model)
-                        {
-                            if (l.RoomLevel == i)
-                            {
-                                <input type="text" id="txt@(i)" class="form-control" value="@l.Name">
-                                mon = true;
-                            }
-                        }
-                        @if (mon == false)
-                        {
-                            <input type="text" id="txt@(i)" class="form-control">
-                        }
-
-                    </div>
-                </div>
-            </div>
-        }
 
     </div>
-    <div class="col-md-6">
-        @for (int i = -20; i < 0; i++)
-        {
-            mon = false;
-            <div class="row">
-                <div class="form-group">
-                    <label for="txt@(i)" class="col-xs-3 col-form-label">Room @i</label>
-                    <div class="col-xs-9">
 
-                        @foreach (Level l in Model)
-                        {
-                            if (l.RoomLevel == i)
+    <div class="row">
+        <div class="col-md-6">
+            @for (int i = 1; i < 21; i++)
+            {
+
+                mon = false;
+                <div id="div@(i)" class="row">
+                    <div class="form-group">
+                        <label for="txt@(i)" class="col-xs-3 col-form-label">Room @i</label>
+                        <div class="col-xs-9 ">
+
+                            @foreach (Level l in Model)
                             {
-                                <input type="text" id="txt@(i)" class="form-control" value="@l.Name">
-                                mon = true;
+                                if (l.RoomLevel == i)
+                                {
+                                    <input type="text" id="txt@(i)" class="form-control" value="@l.Name">                                    
+                                    mon = true;
+                                }
                             }
-                        }
-                        @if (mon == false)
-                        {
-                            <input type="text" id="txt@(i)" class="form-control">
-                        }
+                            @if (mon == false)
+                            {
+                                <input type="text" id="txt@(i)" class="form-control">
+                            }
+
+                        </div>
                     </div>
                 </div>
-            </div>
-        }
+            }
+
+
+        </div>
+        <div class="col-md-6">
+            @for (int i = -20; i < 0; i++)
+            {
+                mon = false;
+                <div class="row">
+                    <div class="form-group">
+                        <label for="txt@(i)" class="col-xs-3 col-form-label">Room @i</label>
+                        <div class="col-xs-9">
+
+                            @foreach (Level l in Model)
+                            {
+                                if (l.RoomLevel == i)
+                                {
+                                    <input type="text" id="txt@(i)" class="form-control" value="@l.Name">
+                                    mon = true;
+                                }
+                            }
+                            @if (mon == false)
+                            {
+                                <input type="text" id="txt@(i)" class="form-control">
+                            }
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
     </div>
 </div>
 <div>

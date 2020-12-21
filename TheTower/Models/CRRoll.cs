@@ -11,6 +11,7 @@ namespace TheTower.Models
         public int RollNumber { get; set; }
         public int CRLevel { get; set; }
         public int MonsterCRID { get; set; }
+        public int MonsterQTY { get; set; }
         public CRRoll()
         {
 

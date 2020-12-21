@@ -1,5 +1,27 @@
-﻿@model IEnumerable<int>
+﻿@model IEnumerable<RoomRoll>
+@{
+    
+    int newRoom = 0;
+    foreach (var item in Model) {        
+        newRoom = ViewBag.CRoomLevel + item.RoomMove;
+    }
+}
 
-    <h4 id="hRoomMove">ViewBag.vbRoomMove</h4>
-<h5>Your Next Floor <b id="hNextRoom">ViewBag.vbNewRoom</b></h5>
-<button type="button" class="btn btn-info">View List</button>
+@foreach (var item in Model)
+{
+    <h4>You rolled a : @Html.DisplayFor(modelItem => item.DiceRoll) </h4>
+    <h4>Going Up/Down: @Html.DisplayFor(modelItem => item.RoomMove) Floors</h4>
+    <h5>Next Floor: @newRoom</h5>
+    @if(ViewBag.LevelExist == false)
+    {
+        <h5>You have not entered this room yet!</h5>
+    }
+    else
+    {
+        <h5>YOU HAVE ALREADY BEEN HERE!</h5>
+    }
+
+
+
+
+}

@@ -22,6 +22,7 @@ namespace TheTower.Models
         public DbSet<Biome> Biome { get; set; }
         public DbSet<Event> Event { get; set; }
         public DbSet<Item> Item { get; set; }
+        public DbSet<RoomRoll> RoomRoll { get; set; }
         public DbSet<Monster> Monster { get; set; }
         public DbSet<MonsterCR> MonsterCR { get; set; }
         public DbSet<Monster> RoomEvent { get; set; }
@@ -30,21 +31,6 @@ namespace TheTower.Models
         public DbSet<CRRoll> CRRoll { get; set; }
         public DbSet<TheTower.Models.Level> Level { get; set; }
 
-        /*
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            base.OnModelCreating(modelBuilder);
-
-            modelBuilder.Entity<Monster>()
-                .HasData(new Monster()
-                {
-                    MonsterName = "Roc",
-                    MonsterCR = "11",                    
-                    MonsterRdNumber = "1",
-                    MMPage = "2233",
-                    ID = 1
-                });
-        }*/
         
     }
 }

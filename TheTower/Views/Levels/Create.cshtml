@@ -14,7 +14,7 @@
         <div class="row">
             <h3 class="col-xs-6">Current Room:</h3>
             <div class="col-xs-6">
-                <input class="input-lg txtCurrentRoll" type="text" value="@ViewBag.CRoomLevel" />
+                <input class="input-lg txtCurrentRoll" id="txtCurrentRoom" type="text" value="@ViewBag.CRoomLevel" />
             </div>
         </div>
     </div>
@@ -23,16 +23,14 @@
 
 <form asp-controller="Levels" asp-action="Create">
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-sm-6">
             <div class="col-md-12">
                 <div class="row rollWindow-Content">
-
                     <h4>Roll for Room (d12)</h4>
                     <div class="row">
                         <input asp-for="RoomLevel" id="txtRoomRoll" type="text" />
                         <button type="button" class="btn btn-info" id="btnRoomGen">Gen</button>
                     </div>
-
                     <div id="divNewRoom">
                         <h4 id="hRoomMove">@ViewBag.vbRoomMove</h4>
                         <h5>Your Next Floor <b id="hNextRoom">@ViewBag.vbNextRoom</b></h5>
@@ -65,27 +63,27 @@
                         <h4>Event Details</h4>
                     </div>
                     <button type="button" class="btn btn-info">View List</button>
-
                 </div>
             </div>
         </div>
-    </div>
+    
 
-    <div class="row">
-        <div class="col-md-6">
-            <div class="col-sm-6 ">
+    
+        <div class="col-sm-6">
+            <div class="col-md-12">
                 <div class="row rollWindow-Content">
                     <h4>Roll for Monster Challenge (d20)</h4>
                     <div class="row">
                         <input asp-for="CRLevel" id="txtMonRoll" type="text" />
-                        <button type="button" class="btn btn-info">Gen</button>
+                        <button type="button" id="btnMonGen" class="btn btn-info">Gen</button>
                     </div>
-                    <h4>11</h4>
-                    <h5>2 Challenge Rating 11 Characters</h5>
+                    <div id="divCRDetails">
+                        
+                    </div>
                     <a class=" btn btn-info" asp-controller="Monsters" asp-action="Index">View List</a>
                 </div>
             </div>
-            <div class="col-sm-6 ">
+            <div class="col-md-12">
                 <div class="row rollWindow-Content">
                     <h4>Roll for Monster(d4)</h4>
                     <div class="row">
@@ -121,7 +119,7 @@
         $("#btnRoomGen").click(function () {
             var roomroll = $("#txtRoomRoll").val();
             $("#divNewRoom").load("/Levels/GetNewLevel",
-                { roll: roomroll });
+                { roll: roomroll , curRoom: @ViewBag.CRoomLevel , sessionid: @ViewBag.CSessionID});
         });
     });
 
@@ -138,6 +136,14 @@
             var Eventroll = $("#txtEvent").val();
             $("#divEventDetails").load("/Levels/GetNewEvent",
                 { roll: Eventroll });
+        });
+    });
+
+    $(document).ready(function () {
+        $("#btnMonGen").click(function () {            
+            var CRroll = $("#txtMonRoll").val();
+            $("#divCRDetails").load("/Levels/GetNewCR",
+                { roll: CRroll });            
         });
     });
 

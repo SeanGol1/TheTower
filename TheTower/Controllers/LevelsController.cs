@@ -29,62 +29,38 @@ namespace TheTower.Controllers
         }
 
 
-        public ActionResult GetNewLevel(int roll)
+        public ActionResult GetNewLevel(int roll , int curRoom ,int sessionid)
         {
-            List<int> model = null;
+            List<RoomRoll> model = null;
 
-            int RoomMove = 0;
-            switch (roll)
+            var query = from r in _context.RoomRoll
+                        where r.DiceRoll == roll
+                        select r;
+            model = query.ToList();
+            List<Level> levelexist = null;
+            foreach (var item in model)
             {
-                case 1:
-                    RoomMove = -6;
-                    break;
-                case 2:
-                    RoomMove = -5;
-                    break;
-                case 3:
-                    RoomMove = -4;
-                    break;
-                case 4:
-                    RoomMove = -3;
-                    break;
-                case 5:
-                    RoomMove = -2;
-                    break;
-                case 6:
-                    RoomMove = -1;
-                    break;
-                case 7:
-                    RoomMove = 1;
-                    break;
-                case 8:
-                    RoomMove = 2;
-                    break;
-                case 9:
-                    RoomMove = 3;
-                    break;
-                case 10:
-                    RoomMove = 4;
-                    break;
-                case 11:
-                    RoomMove = 5;
-                    break;
-                case 12:
-                    RoomMove = 6;
-                    break;
-                default:
-                    RoomMove = 0;
-                    break;
+                var query2 = from l in _context.Level
+                             where l.SessionID == sessionid
+                             where l.RoomLevel == (curRoom + item.RoomMove)
+                             select l;
+                levelexist = query2.ToList();
             }
+            if (levelexist.Count() == 0)
+            {
+                ViewBag.LevelExist = false;
+            }
+            else
+            {
+                foreach (var item in levelexist)
+                {
+                    ViewBag.LevelExist = true;
+                    ViewBag.LevelID = item.ID;
+                }
+            }
+            
 
-            int NewRoom = roll + RoomMove;
-
-            model.Add(NewRoom);
-            model.Add(RoomMove);
-            ViewBag.vbRoomMove = RoomMove;
-            ViewBag.vbNewRoom = NewRoom;
-
-
+            ViewBag.CRoomLevel = curRoom;
             return PartialView("RoomNumberPartialView", model);
         }
 
@@ -116,6 +92,21 @@ namespace TheTower.Controllers
 
 
             return PartialView("_EventItemView", model);
+        }
+
+        public ActionResult GetNewCR(int roll)
+        {
+            List<CRRoll> model = null;
+
+            var query = from c in _context.CRRoll
+                        where c.RollNumber == roll
+                        select c;
+            model = query.ToList();
+
+
+
+
+            return PartialView("_CRItemList", model);
         }
 
         // GET: Levels/Details/5
@@ -154,6 +145,7 @@ namespace TheTower.Controllers
             }
 
             ViewBag.CRoomLevel = session.CurrentLevel;
+            ViewBag.CSessionID = session.ID;
 
 
             return View();

@@ -66,9 +66,9 @@
                 </div>
             </div>
         </div>
-    
 
-    
+
+
         <div class="col-sm-6">
             <div class="col-md-12">
                 <div class="row rollWindow-Content">
@@ -78,21 +78,23 @@
                         <button type="button" id="btnMonGen" class="btn btn-info">Gen</button>
                     </div>
                     <div id="divCRDetails">
-                        
+
                     </div>
                     <a class=" btn btn-info" asp-controller="Monsters" asp-action="Index">View List</a>
                 </div>
             </div>
             <div class="col-md-12">
                 <div class="row rollWindow-Content">
-                    <h4>Roll for Monster(d4)</h4>
-                    <div class="row">
-                        <input asp-for="MonsterID" id="txtMonsterRoll" type="text" />
-                        <button type="button" id="btnMonsterGen" class="btn btn-info">Gen</button>
-                        <button type="button" class="btn btn-info">View Stats</button>
-                        <button type="button" class="btn btn-info">View Image</button>
+                    <div id="divEachMonster">
+                        <h4>Roll for Monster(d4)</h4>
+                        <div class="row">
+                            <input asp-for="MonsterID" id="txtMonsterRoll" type="text" />
+                            <button type="button" id="btnMonsterGen" class="btn btn-info">Gen</button>
+                            <button type="button" class="btn btn-info">View Stats</button>
+                            <button type="button" class="btn btn-info">View Image</button>
+                        </div>
+                        <div id="divMonsterDetails"></div>
                     </div>
-                    <div id="divMonsterDetails"></div>                    
                     <a class="btn btn-info" asp-controller="Monsters" asp-action="Index">View List</a>
                 </div>
             </div>
@@ -139,19 +141,27 @@
     });
 
     $(document).ready(function () {
-        $("#btnMonGen").click(function () {            
+        $("#btnMonGen").click(function () {
             var CRroll = $("#txtMonRoll").val();
             $("#divCRDetails").load("/Levels/GetNewCR",
-                { roll: CRroll });            
+                { roll: CRroll });
         });
     });
 
     $(document).ready(function () {
-        $("#btnMonsterGen").click(function () {            
+        $("#btnMonsterGen").click(function () {
             var monroll = $("#txtMonsterRoll").val();
             var CRroll = $("#txtMonRoll").val();
             $("#divMonsterDetails").load("/Levels/GetNewMonDetail",
-                { roll: monroll, cr: CRroll });            
+                { roll: monroll, cr: CRroll });
+        });
+    });
+
+    $(document).ready(function () {
+        $("#txtMonRoll").focusout(function () {
+            var CRroll = $("#txtMonRoll").val();
+            $("#divMonsterDetails").load("/Levels/GetMonQTYinput",
+                { cr: CRroll });
         });
     });
 

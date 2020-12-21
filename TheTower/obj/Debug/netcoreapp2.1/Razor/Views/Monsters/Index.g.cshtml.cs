@@ -69,7 +69,7 @@ using TheTower.Models;
             WriteLiteral("    \r\n        <h3>Monster List</h3>\r\n    \r\n<div class=\"row\">\r\n    <div class=\"col-xs-4\">\r\n        <p>\r\n            ");
             EndContext();
             BeginContext(203, 61, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "cbb2b11f0f704e1990878ba014563454", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "a4a5b3b0491a477bab598d6785b4ce9b", async() => {
                 BeginContext(250, 10, true);
                 WriteLiteral("Create New");
                 EndContext();
@@ -92,7 +92,7 @@ using TheTower.Models;
             WriteLiteral("\r\n        </p>\r\n    </div>\r\n    <div class=\"col-xs-4\">\r\n        <label for=\"CRFilter\">Filter Monsters:</label>\r\n            <select class=\"form-control\" style=\"width: 200px;\" name=\"CRFilter\" id=\"selCRFilter\">\r\n                ");
             EndContext();
             BeginContext(490, 30, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "01440e705def42c786062fc869c17e3d", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "fb5f91d6b13f4b72b7f6b31b2f6cf69b", async() => {
                 BeginContext(508, 3, true);
                 WriteLiteral("All");
                 EndContext();
@@ -123,7 +123,7 @@ using TheTower.Models;
             WriteLiteral("                    ");
             EndContext();
             BeginContext(608, 30, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "657eeb1bbabd4dbcaedf149dac3d3170", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "9e8178e72d844a829ccb6371858c4a1e", async() => {
                 BeginContext(628, 1, false);
 #line 21 "C:\Users\seang\source\repos\The Tower App\TheTower\Views\Monsters\Index.cshtml"
                                   Write(i);
@@ -253,7 +253,7 @@ using TheTower.Models;
             WriteLiteral("\r\n                    </td>\r\n                    <td>\r\n                        ");
             EndContext();
             BeginContext(1953, 53, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "0cdc10b233d742818e3024bf2106e6aa", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "cd16b80621c5462d9d0e7ff3448b06ff", async() => {
                 BeginContext(1998, 4, true);
                 WriteLiteral("Edit");
                 EndContext();
@@ -288,7 +288,7 @@ using TheTower.Models;
             WriteLiteral(" |\r\n                        ");
             EndContext();
             BeginContext(2034, 59, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "ad0597764264492a8bea109e5ca8dd2b", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "380c28e08b40412caf67f490469fa5d1", async() => {
                 BeginContext(2082, 7, true);
                 WriteLiteral("Details");
                 EndContext();
@@ -323,7 +323,7 @@ using TheTower.Models;
             WriteLiteral(" |\r\n                        ");
             EndContext();
             BeginContext(2121, 57, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "15bcca9c56b447ab91843f6d14e88635", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "760b783db77c45918a7c27e98ae20b5b", async() => {
                 BeginContext(2168, 6, true);
                 WriteLiteral("Delete");
                 EndContext();

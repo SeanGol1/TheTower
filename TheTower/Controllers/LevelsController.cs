@@ -120,6 +120,17 @@ namespace TheTower.Controllers
             return PartialView("_MonsterDetailsView", model);
         }
 
+        public ActionResult GetMonQTYinput(int cr)
+        {
+            List<CRRoll> model = null;
+            var query = from c in _context.CRRoll
+                        where c.RollNumber == cr
+                        select c;
+            model = query.ToList();
+
+            return PartialView("MonsterQTYInputView", model);
+        }
+
         // GET: Levels/Details/5
         public async Task<IActionResult> Details(int? id)
         {

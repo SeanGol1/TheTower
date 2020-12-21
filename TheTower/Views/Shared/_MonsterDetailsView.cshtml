@@ -1,0 +1,10 @@
+﻿@model IEnumerable<TheTower.Models.Monster>
+
+@foreach (var item in Model)
+{
+    @Html.DisplayFor(modelItem => item.ChallengeRating)
+    <h4>You rolled a: @Html.DisplayFor(modelItem => item.RollNumber)</h4>
+    <h4>Monster Name:<b>@Html.DisplayFor(modelItem => item.Name)</b></h4>
+    <h6>src:@Html.DisplayFor(modelItem => item.Source)</h6>
+    <a asp-action="Details" asp-route-id="@item.ID">Details</a>
+}

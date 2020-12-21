@@ -29,7 +29,7 @@ namespace TheTower.Controllers
         }
 
 
-        public ActionResult GetNewLevel(int roll , int curRoom ,int sessionid)
+        public ActionResult GetNewLevel(int roll, int curRoom, int sessionid)
         {
             List<RoomRoll> model = null;
 
@@ -55,10 +55,9 @@ namespace TheTower.Controllers
                 foreach (var item in levelexist)
                 {
                     ViewBag.LevelExist = true;
-                    ViewBag.LevelID = item.ID;
                 }
             }
-            
+
 
             ViewBag.CRoomLevel = curRoom;
             return PartialView("RoomNumberPartialView", model);
@@ -73,9 +72,6 @@ namespace TheTower.Controllers
                         select b;
             model = query.ToList();
 
-
-
-
             return PartialView("BiomeItemView", model);
         }
 
@@ -87,9 +83,6 @@ namespace TheTower.Controllers
                         where e.RollNumber == roll
                         select e;
             model = query.ToList();
-
-
-
 
             return PartialView("_EventItemView", model);
         }
@@ -103,10 +96,28 @@ namespace TheTower.Controllers
                         select c;
             model = query.ToList();
 
-
-
-
             return PartialView("_CRItemList", model);
+        }
+
+        public ActionResult GetNewMonDetail(int roll, int cr)
+        {
+            List<Monster> model = null;
+            List<CRRoll> CRDet = null;
+            var query = from c in _context.CRRoll
+                        where c.RollNumber == cr
+                        select c;
+            CRDet = query.ToList();
+            foreach (var item in CRDet)
+            {
+                var query2 = from m in _context.Monster
+                             where m.RollNumber == roll
+                             where m.ChallengeRating == item.CRLevel
+                             select m;
+                model = query2.ToList();
+            }
+
+
+            return PartialView("_MonsterDetailsView", model);
         }
 
         // GET: Levels/Details/5

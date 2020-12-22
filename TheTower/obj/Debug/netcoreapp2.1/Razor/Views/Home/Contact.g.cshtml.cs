@@ -60,7 +60,7 @@ using TheTower.Models;
             WriteLiteral("<h2>Tower Levels</h2>\r\n\r\n");
             EndContext();
             BeginContext(68, 911, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "8d3a7f0ba2f4453ab671a3f5f9bc41d0", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "598048fb93394385a4f26eed91f23e5e", async() => {
                 BeginContext(74, 30, true);
                 WriteLiteral("\r\n    <div class=\"col-md-6\">\r\n");
                 EndContext();

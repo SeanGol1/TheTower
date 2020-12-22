@@ -1,10 +1,55 @@
-﻿@{
+﻿@model IEnumerable<TheTower.Models.Session>
+@{
     //ViewData["Title"] = "Home Page";
 }
 
-<div class="row">
-    <a class="btn btn-submit jumbotron" asp-controller="Sessions" asp-action="Create">Create New Session</a>
-    <a class="btn btn-submit jumbotron" asp-controller="Sessions" asp-action="Index">Load Old Session</a>
+<div class="row jumbotron">
+    <div class="col-md-6">
+        <a class="btn btn-default" asp-controller="Sessions" asp-action="Create">Create New Session</a>
+        <!--
+        <a class="btn btn-default" asp-controller="Sessions" asp-action="Index">Load Old Session</a>
+        -->
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.DMName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.PlayerLevel)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.PlayerQty)
+                    </th>
+                    
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DMName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PlayerLevel)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PlayerQty)
+                        </td>
+                        <td>
+
+                            <a class="btn btn-success" asp-controller="Sessions" asp-action="Details" asp-route-id="@item.ID">Select</a> |
+                            <a class="btn btn-default" asp-controller="Sessions" asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
+                            <a class="btn btn-danger" asp-controller="Sessions" asp-action="Delete" asp-route-id="@item.ID">Delete</a>
+                        </td>
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
 </div>
 
 <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="6000">

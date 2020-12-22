@@ -28,6 +28,7 @@ namespace TheTower.Controllers
             return View(await _context.Level.ToListAsync());
         }
 
+        //Levels/Create Ajax Calls
 
         public ActionResult GetNewLevel(int roll, int curRoom, int sessionid)
         {
@@ -130,6 +131,34 @@ namespace TheTower.Controllers
 
             return PartialView("MonsterQTYInputView", model);
         }
+
+        //Levels/Details Ajax Calls
+        public ActionResult GetMonDetails(int id)
+        {
+            List<Monster> model = null;
+
+            var query = from m in _context.Monster 
+                        join l in _context.Level on m.ID equals l.MonsterID
+                        where l.ID == id
+                        select m;
+            model = query.ToList();
+
+            return PartialView("_GetMonsterView", model);
+        }
+
+        public ActionResult GetCharDetails(int id)
+        {
+            List<Session> model = null;
+
+            var query = from s in _context.Session      
+                        join l in _context.Level on s.ID equals l.SessionID
+                        where l.ID == id
+                        select s;
+            model = query.ToList();
+
+            return PartialView("_GetCharacterView", model);
+        }
+
 
         // GET: Levels/Details/5
         public async Task<IActionResult> Details(int? id)

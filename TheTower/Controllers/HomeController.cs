@@ -5,6 +5,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using TheTower.Models;
+using Microsoft.EntityFrameworkCore;
+using TheTower.Data;
 
 namespace TheTower.Controllers
 {
@@ -19,7 +21,12 @@ namespace TheTower.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            List<Session> model = null;
+            var query = from s in _context.Session                        
+                        select s;
+            model = query.ToList();
+
+            return View(model);
         }
 
         public IActionResult About()

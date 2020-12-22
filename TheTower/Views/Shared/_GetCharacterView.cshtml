@@ -1,0 +1,17 @@
+﻿@model IEnumerable<TheTower.Models.Session>
+@{ 
+    List<string> images = new List<string>();
+    images.Add("bard.jpg");
+    images.Add("druid.jpg");
+    images.Add("monk.jpg");
+}
+@foreach (var item in Model)
+{
+    <h2>@item.PlayerQty Players</h2>
+    <h4>@item.PlayerLevel Level</h4>
+    @for (int i = 0; i < item.PlayerQty; i++)
+    {
+        <img class="imgChar" src="~/images/Characters/bard.jpg" />
+    }
+    
+}

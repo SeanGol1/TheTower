@@ -4,6 +4,9 @@
     images.Add("bard.jpg");
     images.Add("druid.jpg");
     images.Add("monk.jpg");
+    images.Add("SmallWarrior.jpg");
+    images.Add("rogue.jpg");
+    Random rd = new Random();
 }
 @foreach (var item in Model)
 {
@@ -11,7 +14,8 @@
     <h4>@item.PlayerLevel Level</h4>
     @for (int i = 0; i < item.PlayerQty; i++)
     {
-        <img class="imgChar" src="~/images/Characters/bard.jpg" />
+        
+        <img class="imgChar" src="~/images/Characters/@(images[rd.Next(images.Count)])" />
     }
     
 }

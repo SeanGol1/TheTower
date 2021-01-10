@@ -144,7 +144,7 @@
         $("#btnMonGen").click(function () {
             var CRroll = $("#txtMonRoll").val();
             $("#divCRDetails").load("/Levels/GetNewCR",
-                { roll: CRroll });
+                { roll: CRroll, sessionid: @ViewBag.CSessionID });
         });
     });
 
@@ -156,7 +156,7 @@
                 { roll: monroll, cr: CRroll });
         });
     });
-
+    /*
     $(document).ready(function () {
         $("#txtMonRoll").focusout(function () {
             var CRroll = $("#txtMonRoll").val();
@@ -164,5 +164,5 @@
                 { cr: CRroll });
         });
     });
-
+    */
 </script>

@@ -3,32 +3,74 @@
 @{
     ViewData["Title"] = "Details";
 }
+<div class"container-fluid body-content">
+    <div class="row">
+        <div class="jumbotron" id="divBanner">
+            <h3 id="roomNoHead">Room @Model.RoomLevel</h3>
+        </div>
+    </div>
 
-<div class="row">
-    <h3 class="jumbotron">Room @Model.RoomLevel</h3>
-</div>
-<div class="row">
-    <div class="col-lg-4">
-        <div id="divCharDet">
-            <btn class="btn btn-success" id="btnCharDet">Get Characters</btn>
-        </div>
-    </div>
-    <div class="col-lg-4">
-        <div class="col-lg-12">
-            <img class="imgVersus" src="~/images/versus.jpeg" />
-        </div>
-        <div class="col-lg-12">
-            <h3>Room Timer</h3>
-            <h1 class="jumbotron">00:00</h1>
-        </div>
-    </div>
-    <div class="col-lg-4">
-        <div id="divMonDet">
-            <btn class="btn btn-success" id="btnMonDet">Get Monster</btn>
-        </div>
-    </div>
-</div>
+    <div class="row">
+        <div class="col-lg-5">
+            <div id="divCharDet">
+                <div class="col-md-2"></div>
+                <div class="col-md-8">
+                    <form>
+                        @for (int i = 0; i < ViewBag.Players; i++)
+                        {
+                                                       
+                            <h4>Player 1</h4>
+                            <div class="row">
+                                <label for="txtPlayerName">Name: </label>
+                                <input id="txtPlayerName" type="text" />
+                            </div>
+                            <div class="row">
+                                <label for="txtPlayerInit">Init: </label>
+                                <input id="txtPlayerInit" type="text" />
+                            </div>
+                            <div class="row">
+                                <div class="form-group">
+                                    <label for="sel1">Select Class (select one):</label>
+                                    <select class="form-control" id="sel1">
+                                        <option>Bard</option>
+                                        <option>Fighter</option>
+                                        <option>Rogue</option>
+                                        <option>Druid</option>
+                                        <option>Monk</option>
+                                    </select>
+                                    <br>
+                                </div>
+                            </div>
+                        }
+                    </form>
 
+                    <btn class="btn btn-success" id="btnCharDet">Get Characters</btn>
+
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-2">
+            <div class="col-lg-12">
+                <img class="imgVersus" src="~/images/versus.jpeg" />
+            </div>
+            <div class="col-lg-12">
+                <h3>Room Event</h3>
+                <div id="divEvent">
+                    <button id="btnEventDetails" class="btn btn-success">Get Event</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-5">
+            <div id="divMonDet">
+                <div class="row">
+                    <label for="txtMonsterInit">Init: </label>
+                    <input id="txtMonsterInit" type="text" />
+                </div>
+                <btn class="btn btn-success" id="btnMonDet">Get Monster</btn>
+            </div>
+        </div>
+    </div>
+</div>
 <script>
         $(document).ready(function () {
         $("#btnMonDet").click(function () {
@@ -36,7 +78,14 @@
                 { id: @Model.ID });
         });
 
-              $("#btnCharDet").click(function () {
+        $("#btnEventDetails").click(function () {
+            $("#divEvent").load("/Levels/GetEventDetails",
+                { id: @Model.EventID });
+        });
+
+        $("#btnCharDet").click(function () {
+    var monroll = $("#txtMonsterRoll").val();
+            var CRroll = $("#txtMonRoll").val();
             $("#divCharDet").load("/Levels/GetCharDetails",
                 { id: @Model.ID });
         });

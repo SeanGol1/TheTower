@@ -1,9 +1,18 @@
 ﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification\ 
 for details on configuring this project to bundle and minify static web assets. */
+@font-face {
+    font-family: 'hardigan';
+    src: url('../font/hardigan.otf') format('opentype');
+}
+
 body {
     padding-top: 50px;
     padding-bottom: 20px;
+    font-family: hardigan;
 }
+
+
+
 
 /* Wrapping element */
 /* Set some basic padding to keep content from hitting the edges */
@@ -125,9 +134,38 @@ button{
 .imgChar, .imgMon{
     max-width: 250px;
     max-height: 250px;
+    /*padding: 1px;*/
+    
 }
 
 .imgVersus {
-    max-width: 300px;
-    max-height: 300px;
+    max-width: 200px;
+    max-height: 200px;
+}
+
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+    max-width: 100%;
+}
+
+#divBanner {
+    background-image: url("../images/background_banner.jpg");
+    background-size: 100% 100%;
+    max-height:200px;
+}
+
+#roomNoHead {
+    
+    text-align: center;
+    color: red;
+    font-family: hardigan;
+    font-size: 40px;
+}
+
+.divPlayer {
+    /*border: 3px groove black;
+    background: #cfc7c6;
+    margin: 0px;*/
+    padding: 5px;
 }

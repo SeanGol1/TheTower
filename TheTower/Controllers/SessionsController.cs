@@ -54,6 +54,80 @@ namespace TheTower.Controllers
             return View();
         }
 
+        public int GetPartyXP(int lvl, int qty)
+        {
+            int xp = 0;
+            switch (lvl)
+            {
+                case 1:
+                    xp = 100;
+                    break;
+                case 2:
+                    xp = 200;
+                    break;
+                case 3:
+                    xp = 400;
+                    break;
+                case 4:
+                    xp = 500;
+                    break;
+                case 5:
+                    xp = 1100;
+                    break;
+                case 6:
+                    xp = 1400;
+                    break;
+                case 7:
+                    xp = 1700;
+                    break;
+                case 8:
+                    xp = 2100;
+                    break;
+                case 9:
+                    xp = 2400;
+                    break;
+                case 10:
+                    xp = 2800;
+                    break;
+                case 11:
+                    xp = 3600;
+                    break;
+                case 12:
+                    xp = 4500;
+                    break;
+                case 13:
+                    xp = 5100;
+                    break;
+                case 14:
+                    xp = 5700;
+                    break;
+                case 15:
+                    xp = 6400;
+                    break;
+                case 16:
+                    xp = 7200;
+                    break;
+                case 17:
+                    xp = 8800;
+                    break;
+                case 18:
+                    xp = 9500;
+                    break;
+                case 19:
+                    xp = 10900;
+                    break;
+                case 20:
+                    xp = 12700;
+                    break;
+
+
+
+                default:
+                    break;
+            }
+            return (xp * qty);
+        }
+
         // POST: Sessions/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -63,16 +137,65 @@ namespace TheTower.Controllers
         {
             if (ModelState.IsValid)
             {
-                int CR = session.PlayerLevel * session.PlayerQty;
+                /*int CR = session.PlayerLevel * session.PlayerQty;
                 if(CR == 28)
                 {
                     session.MonsterCRID = 1;
                 }
+                */
+                session.XP = GetPartyXP(session.PlayerLevel, session.PlayerQty);
+
                 _context.Add(session);
                 await _context.SaveChangesAsync();
+                GetMonsterList(session);
                 return RedirectToAction("Details", "Sessions", new { id = session.ID });
             }
             return View(session);
+        }
+
+        public void GetMonsterList(Session session)
+        {
+            var query = from m in _context.Monster
+                        select m;
+            List<Monster> MonList = query.ToList();
+            List<Monster> TempMonList = new List<Monster>();
+            List<int> Cr = new List<int>();
+
+            Random rd = new Random();
+            foreach (var mon in MonList)
+            {
+                if (mon.XP <= (session.XP * 1.5) && mon.XP >= (session.XP * .5))
+                {
+                    TempMonList.Add(mon);
+                }
+            }
+            int high = 0;
+            int low = 100;
+            foreach (var mon in TempMonList)
+            {
+                if (mon.ChallengeRating < low)
+                {
+                    low = mon.ChallengeRating;
+                }
+                else if (mon.ChallengeRating > high)
+                {
+                    high = mon.ChallengeRating;
+                }
+            }
+
+            for (int i = 1; i < 21; i++)
+            {
+                CRRoll crEntry = new CRRoll();
+                crEntry.RollNumber = i;
+                crEntry.SessionId = session.ID;
+                crEntry.MonsterQTY = 1;
+                crEntry.XP = rd.Next(low, high);
+                //crEntry.MonsterId = TempMonList[rd.Next(TempMonList.Count)].ID;
+                crEntry.MonsterId = 2;
+                _context.CRRoll.Add(crEntry);
+
+            }
+            _context.SaveChangesAsync();
         }
 
         // GET: Sessions/Edit/5
@@ -150,6 +273,28 @@ namespace TheTower.Controllers
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var session = await _context.Session.FindAsync(id);
+
+            //Delete Levels.
+            var query = from l in _context.Level
+                        where l.SessionID == id
+                        select l;
+            List<Level> levels = query.ToList();
+            foreach (var level in levels)
+            {
+                _context.Remove(level);
+            }
+
+
+            //Delete CRRoll.
+            var query2 = from cr in _context.CRRoll
+                        where cr.SessionId == id
+                        select cr;
+            List<CRRoll> CRRolls = query2.ToList();
+            foreach (var crroll in CRRolls)
+            {
+                _context.Remove(crroll);
+            }
+
             _context.Session.Remove(session);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));

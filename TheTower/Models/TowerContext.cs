@@ -15,8 +15,7 @@ namespace TheTower.Models
         }
         public TowerContext(DbContextOptions<TowerContext> options): base(options)
         {
-
-
+            
         }
 
         public DbSet<Biome> Biome { get; set; }

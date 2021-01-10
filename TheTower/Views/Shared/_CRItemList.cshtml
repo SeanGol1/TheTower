@@ -1,9 +1,7 @@
-﻿@model IEnumerable<TheTower.Models.CRRoll>
+﻿@model TheTower.Models.CRRoll
 
-@foreach (var item in Model)
-{
-    <h4>You rolled a : @Html.DisplayFor(modelItem => item.RollNumber) </h4>
-    <h4>Challenge Rating: @Html.DisplayFor(modelItem => item.CRLevel)</h4>
-    <h5>Number of Monsters: @Html.DisplayFor(modelItem => item.MonsterQTY)</h5>
-    
-}
+
+    <h4>You rolled a : @Model.RollNumber </h4>
+    <h4>Challenge Rating: @Model.XP</h4>
+    <h5>Number of Monsters: @Model.MonsterQTY</h5>
+

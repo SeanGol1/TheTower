@@ -1,5 +1,5 @@
 ﻿@model IEnumerable<TheTower.Models.Session>
-@{ 
+@{
     List<string> images = new List<string>();
     images.Add("bard.jpg");
     images.Add("druid.jpg");
@@ -10,12 +10,15 @@
 }
 @foreach (var item in Model)
 {
-    <h2>@item.PlayerQty Players</h2>
-    <h4>@item.PlayerLevel Level</h4>
-    @for (int i = 0; i < item.PlayerQty; i++)
-    {
-        
-        <img class="imgChar" src="~/images/Characters/@(images[rd.Next(images.Count)])" />
-    }
-    
+    <div class="row">
+        @for (int i = 0; i < item.PlayerQty; i++)
+        {
+            <div class="col-md-4 divPlayer" >
+                <img class="imgChar" src="~/images/Characters/@(images[rd.Next(images.Count)])" />
+                <h4>Player @(i+1)</h4>
+            </div>
+        }
+    </div>
+
+
 }

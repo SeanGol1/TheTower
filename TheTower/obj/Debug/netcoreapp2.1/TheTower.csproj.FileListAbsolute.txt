@@ -85,3 +85,4 @@ C:\Users\seang\source\repos\The Tower App\TheTower\obj\Debug\netcoreapp2.1\Razor
 C:\Users\seang\source\repos\The Tower App\TheTower\obj\Debug\netcoreapp2.1\Razor\Views\Shared\MonsterQTYInputView.g.cshtml.cs
 C:\Users\seang\source\repos\The Tower App\TheTower\obj\Debug\netcoreapp2.1\Razor\Views\Shared\_GetMonsterView.g.cshtml.cs
 C:\Users\seang\source\repos\The Tower App\TheTower\obj\Debug\netcoreapp2.1\Razor\Views\Shared\_GetCharacterView.g.cshtml.cs
+C:\Users\seang\source\repos\The Tower App\TheTower\obj\Debug\netcoreapp2.1\Razor\Views\Shared\_GetEventView.g.cshtml.cs

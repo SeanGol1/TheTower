@@ -21,7 +21,7 @@ namespace TheTower.Data
                 .ToList();
         }
 
-        public int GetCRLevel(int _sessionid, int _CRRoll)
+        /*public int GetCRLevel(int _sessionid, int _CRRoll)
         {
 
             var CRLevel = from s in _ctx.Session
@@ -30,9 +30,9 @@ namespace TheTower.Data
                           where cr.RollNumber == _CRRoll
                           where s.ID == _sessionid
                           select cr.CRLevel;
-
+                          
             return CRLevel.FirstOrDefault();
-        }
+        }*/
 
         public int GetMonsterIDbyRoll(int _rollnumber, int _cr)
         {

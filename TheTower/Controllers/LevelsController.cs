@@ -88,14 +88,27 @@ namespace TheTower.Controllers
             return PartialView("_EventItemView", model);
         }
 
-        public ActionResult GetNewCR(int roll)
+        public ActionResult GetEventDetails(int? id)
         {
-            List<CRRoll> model = null;
+            Event model = null;
+
+            var query = from e in _context.Event
+                        where e.ID == id
+                        select e;
+            model = query.FirstOrDefault();
+
+            return PartialView("_GetEventView", model);
+        }
+
+        public ActionResult GetNewCR(int roll , int sessionid)
+        {
+            CRRoll model = null;
 
             var query = from c in _context.CRRoll
                         where c.RollNumber == roll
+                        where c.SessionId == sessionid
                         select c;
-            model = query.ToList();
+            model = query.FirstOrDefault();
 
             return PartialView("_CRItemList", model);
         }
@@ -112,7 +125,6 @@ namespace TheTower.Controllers
             {
                 var query2 = from m in _context.Monster
                              where m.RollNumber == roll
-                             where m.ChallengeRating == item.CRLevel
                              select m;
                 model = query2.ToList();
             }
@@ -121,7 +133,7 @@ namespace TheTower.Controllers
             return PartialView("_MonsterDetailsView", model);
         }
 
-        public ActionResult GetMonQTYinput(int cr)
+        /*public ActionResult GetMonQTYinput(int cr)
         {
             List<CRRoll> model = null;
             var query = from c in _context.CRRoll
@@ -130,7 +142,7 @@ namespace TheTower.Controllers
             model = query.ToList();
 
             return PartialView("MonsterQTYInputView", model);
-        }
+        }*/
 
         //Levels/Details Ajax Calls
         public ActionResult GetMonDetails(int id)
@@ -146,7 +158,7 @@ namespace TheTower.Controllers
             return PartialView("_GetMonsterView", model);
         }
 
-        public ActionResult GetCharDetails(int id)
+        public ActionResult GetCharDetails(int id , string name, int init, string charclass)
         {
             List<Session> model = null;
 
@@ -174,6 +186,11 @@ namespace TheTower.Controllers
             {
                 return NotFound();
             }
+            var query = from s in _context.Session
+                        where s.ID == level.SessionID
+                        select s;
+            Session session = query.FirstOrDefault();
+            ViewBag.Players = session.PlayerQty;
 
             return View(level);
         }
@@ -202,6 +219,8 @@ namespace TheTower.Controllers
             return View();
         }
 
+
+
         // POST: Levels/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -211,7 +230,7 @@ namespace TheTower.Controllers
             if (ModelState.IsValid)
             {
                 level.SessionID = id;
-                level.CRLevel = _repo.GetCRLevel(level.SessionID, level.CRLevel);
+                //level.CRLevel = _repo.GetCRLevel(level.SessionID, level.CRLevel);
                 level.MonsterID = _repo.GetMonsterIDbyRoll(level.MonsterID, level.CRLevel);
                 level.Name = _repo.GetMonsterName(level.MonsterID);
 
@@ -266,6 +285,7 @@ namespace TheTower.Controllers
                 //Edit DB Session Current Room
                 _repo.UpdateCurrentRoomNumber(level.SessionID, level.RoomLevel);
 
+                
                 _context.Add(level);
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Details", "Sessions", new { id = level.SessionID });

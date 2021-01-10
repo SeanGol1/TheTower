@@ -9,6 +9,7 @@ namespace TheTower.Models
     {
         public int ID { get; set; }
         public int ChallengeRating { get; set; }
+        public int XP { get; set; }
         public string Name { get; set; }
         public string Source { get; set; }
         public int RollNumber { get; set; }

@@ -14,6 +14,7 @@ namespace TheTower.Models
         public ICollection<Level> LevelSetup { get; set; }
         public int CurrentLevel { get; set; }
         public int XP { get; set; }
+        public int SessionCode { get; set; }
         public Session()
         {
 

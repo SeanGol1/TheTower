@@ -113,23 +113,32 @@ namespace TheTower.Controllers
             return PartialView("_CRItemList", model);
         }
 
-        public ActionResult GetNewMonDetail(int roll, int cr)
+        public ActionResult GetNewMonDetail(int roll, int sessionid, int cr)
         {
             List<Monster> model = null;
-            List<CRRoll> CRDet = null;
-            var query = from c in _context.CRRoll
-                        where c.RollNumber == cr
-                        select c;
+            List<MonsterCR> CRDet = null;
+
+            var query3 = from c in _context.CRRoll
+                         where c.SessionId == sessionid
+                         where c.RollNumber == cr
+                         select c;
+            CRRoll critem = query3.FirstOrDefault();
+
+            var query = from mcr in _context.MonsterCR
+                        where mcr.RollNo == roll
+                        where mcr.SessionId == sessionid
+                        where mcr.CRRollId == critem.ID
+                        select mcr;
             CRDet = query.ToList();
             foreach (var item in CRDet)
             {
                 var query2 = from m in _context.Monster
-                             where m.RollNumber == roll
+                             where m.ID == item.MonsterId
                              select m;
                 model = query2.ToList();
             }
 
-
+            ViewBag.Roll = roll;
             return PartialView("_MonsterDetailsView", model);
         }
 
@@ -231,7 +240,7 @@ namespace TheTower.Controllers
             {
                 level.SessionID = id;
                 //level.CRLevel = _repo.GetCRLevel(level.SessionID, level.CRLevel);
-                level.MonsterID = _repo.GetMonsterIDbyRoll(level.MonsterID, level.CRLevel);
+                level.MonsterID = _repo.GetMonsterIDbyRoll(level.MonsterID, level.CRLevel, level.SessionID);
                 level.Name = _repo.GetMonsterName(level.MonsterID);
 
                 int RoomMove = 0;
@@ -288,7 +297,7 @@ namespace TheTower.Controllers
                 
                 _context.Add(level);
                 await _context.SaveChangesAsync();
-                return RedirectToAction("Details", "Sessions", new { id = level.SessionID });
+                return RedirectToAction("Details", "Levels", new { id = level.ID });
             }
             return View(level);
         }

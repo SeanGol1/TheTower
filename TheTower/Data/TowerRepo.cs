@@ -34,18 +34,36 @@ namespace TheTower.Data
             return CRLevel.FirstOrDefault();
         }*/
 
-        public int GetMonsterIDbyRoll(int _rollnumber, int _cr)
+        public int GetMonsterIDbyRoll(int _rollnumber, int _cr, int _sessionid)
         {
-            var result = _ctx.Monster.Where(m => m.RollNumber == _rollnumber && m.ChallengeRating == _cr)
+            List<Monster> model = null;
+            MonsterCR MonCR = null;
+
+            var query3 = from c in _ctx.CRRoll
+                         where c.SessionId == _sessionid
+                         where c.RollNumber == _cr
+                         select c;
+            CRRoll critem = query3.FirstOrDefault();
+
+            var query = from mcr in _ctx.MonsterCR
+                        where mcr.RollNo == _rollnumber
+                        where mcr.SessionId == _sessionid
+                        where mcr.CRRollId == critem.ID
+                        select mcr;
+            MonCR = query.FirstOrDefault();            
+
+
+            ////////////////////////
+            var result = _ctx.Monster.Where(m => m.ID == MonCR.MonsterId)
                 .Select(m => m.ID)
                 .ToList();
 
-            var results = from m in _ctx.Monster
+            /*var results = from m in _ctx.Monster
                           where m.RollNumber == _rollnumber
                           where m.ChallengeRating == _cr
-                          select m.ID;
+                          select m.ID;*/
 
-            return results.FirstOrDefault();
+            return result.FirstOrDefault();
         }
 
         public string GetMonsterName(int _monsterID)

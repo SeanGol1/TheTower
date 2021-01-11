@@ -77,7 +77,7 @@ using TheTower.Models;
             WriteLiteral("</h3>\r\n        </div>\r\n    </div>\r\n\r\n    <div class=\"row\">\r\n        <div class=\"col-lg-5\">\r\n            <div id=\"divCharDet\">\r\n                <div class=\"col-md-2\"></div>\r\n                <div class=\"col-md-8\">\r\n                    ");
             EndContext();
             BeginContext(475, 1482, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4ec0ea2174f944188792f98ebd0a2161", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "770714efd8f4454a9534f3205a73f646", async() => {
                 BeginContext(481, 2, true);
                 WriteLiteral("\r\n");
                 EndContext();
@@ -105,7 +105,7 @@ using TheTower.Models;
                                         ");
                 EndContext();
                 BeginContext(1458, 21, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "28bd2e4f753f4f2e9cecb91721698462", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "b9fe1b9cd765446fbafe9779e9fea38f", async() => {
                     BeginContext(1466, 4, true);
                     WriteLiteral("Bard");
                     EndContext();
@@ -125,7 +125,7 @@ using TheTower.Models;
                 WriteLiteral("\r\n                                        ");
                 EndContext();
                 BeginContext(1521, 24, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "2798ef27db7e4697b289d2f2734079f4", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "979de22db3724c4cb8fc379d0110b7be", async() => {
                     BeginContext(1529, 7, true);
                     WriteLiteral("Fighter");
                     EndContext();
@@ -145,7 +145,7 @@ using TheTower.Models;
                 WriteLiteral("\r\n                                        ");
                 EndContext();
                 BeginContext(1587, 22, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "9cb123d64b8c465985e56393d12e7e7b", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "7747f3f0758b4c29bb5fb6916f870954", async() => {
                     BeginContext(1595, 5, true);
                     WriteLiteral("Rogue");
                     EndContext();
@@ -165,7 +165,7 @@ using TheTower.Models;
                 WriteLiteral("\r\n                                        ");
                 EndContext();
                 BeginContext(1651, 22, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "098b171c03d74dfb81c05a11ba94a540", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "392b69ddc9f447e78d8d091cf3808b49", async() => {
                     BeginContext(1659, 5, true);
                     WriteLiteral("Druid");
                     EndContext();
@@ -185,7 +185,7 @@ using TheTower.Models;
                 WriteLiteral("\r\n                                        ");
                 EndContext();
                 BeginContext(1715, 21, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "0f8c556187c24ae9840da05cd332a49e", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "06f3c4cbc1824fba9a9d674552c8c845", async() => {
                     BeginContext(1723, 4, true);
                     WriteLiteral("Monk");
                     EndContext();
@@ -230,7 +230,7 @@ using TheTower.Models;
             WriteLiteral("\r\n\r\n                    <btn class=\"btn btn-success\" id=\"btnCharDet\">Get Characters</btn>\r\n\r\n                </div>\r\n            </div>\r\n        </div>\r\n        <div class=\"col-lg-2\">\r\n            <div class=\"col-lg-12\">\r\n                ");
             EndContext();
             BeginContext(2195, 52, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "ef2872c5725642eb843976f8c8f4f575", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "151a0289ca4740658ea6a4f6b4abaa0d", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();

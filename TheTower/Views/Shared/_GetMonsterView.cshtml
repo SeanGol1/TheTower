@@ -2,10 +2,11 @@
 
 @foreach (var item in Model)
 {
-
-    <h2>@item.Name</h2>
-    <h4>@item.Source</h4>
-    <h4>@item.ChallengeRating</h4>
-    <img class="imgMon" src="~/images/Monsters/@item.ImagePath" />
+    <div class="opacityback">
+        <h2>@item.Name</h2>
+        <h4>@item.Source</h4>
+        <h4>@item.ChallengeRating</h4>
+        <img class="imgMon" src="~/images/Monsters/@item.ImagePath" />
+    </div>
 }
 

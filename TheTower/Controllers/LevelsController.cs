@@ -93,7 +93,7 @@ namespace TheTower.Controllers
             Event model = null;
 
             var query = from e in _context.Event
-                        where e.ID == id
+                        where e.RollNumber == id
                         select e;
             model = query.FirstOrDefault();
 
@@ -199,7 +199,14 @@ namespace TheTower.Controllers
                         where s.ID == level.SessionID
                         select s;
             Session session = query.FirstOrDefault();
+
+            var query2 = from b in _context.Biome
+                        where b.ID == level.BiomeID
+                        select b;
+            Biome biome = query2.FirstOrDefault();
+
             ViewBag.Players = session.PlayerQty;
+            ViewBag.BiomeRoll = biome.RollNumber;
 
             return View(level);
         }

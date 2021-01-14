@@ -5,9 +5,10 @@
     switch (Model.RollNumber)
     {
         case 1:
-            source += "";
+            source = "uno-reverse.png";
             break;
         case 2:
+            source = "resize.jpg";
             break;
         case 3:
             source = "ArrowImg.jpg";
@@ -21,10 +22,11 @@
         case 6:
             source = "electricityImg.jpg";
             break;
-        case 7:            
+        case 7:
+            source = "resize.jpg";
             break;
         case 8:
-            source = "heartImg.png";
+            source = "health.png";
             break;
         default:
             break;
@@ -32,7 +34,7 @@
 }
 
 <div>
-    <img id="imgEvent" src="~/images/Events/@source" class="img-responsive" />
+    <img src="~/images/Events/@source" class="img-responsive imgEvent" />
     <h2>@Model.Name</h2>
     <p>@Model.Description</p>
     

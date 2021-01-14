@@ -2,77 +2,131 @@
 
 @{
     ViewData["Title"] = "Details";
+
+    string source = "";
+    switch (ViewBag.BiomeRoll)
+    {
+        case 1:
+            source = "";
+            break;
+        case 2:
+            source = "cave.jpg";
+            break;
+        case 3:
+            source = "";
+            break;
+        case 4:
+            source = "swamp.jpg";
+            break;
+        case 5:
+            source = "desert.jpg";
+            break;
+        case 6:
+            source = "aquatic.jpg";
+            break;
+        case 7:
+            source = "underdark.jpg";
+            break;
+        case 8:
+            source = "jungle.jpg";
+            break;
+        case 9:
+            source = "urban.jpg";
+            break;
+        case 10:
+            source = "";
+            break;
+        case 11:
+            source = "arctic.jpg";
+            break;
+        case 12:
+            source = "";
+            break;
+
+        default:
+            break;
+    }
 }
 <div class"container-fluid body-content">
-    <div class="row">
-        <div class="jumbotron" id="divBanner">
-            <h3 id="roomNoHead">Room @Model.RoomLevel</h3>
-        </div>
+    <div class="row modal-header" id="divBanner">
+        <h3 id="roomNoHead">Room @Model.RoomLevel</h3>
     </div>
 
-    <div class="row">
-        <div class="col-lg-5">
-            <div id="divCharDet">
-                <div class="col-md-2"></div>
-                <div class="col-md-8">
-                    <form>
-                        @for (int i = 0; i < ViewBag.Players; i++)
-                        {
-                                                       
-                            <h4>Player 1</h4>
+    <div class="row newcontainer" id="divBackground">
+        <div>
+            <div class="col-lg-5">
+                <div id="divCharDet" class="opacityback">
+                    <div class="opacityback">
+                        <form class="form-group">
                             <div class="row">
-                                <label for="txtPlayerName">Name: </label>
-                                <input id="txtPlayerName" type="text" />
-                            </div>
-                            <div class="row">
-                                <label for="txtPlayerInit">Init: </label>
-                                <input id="txtPlayerInit" type="text" />
-                            </div>
-                            <div class="row">
-                                <div class="form-group">
-                                    <label for="sel1">Select Class (select one):</label>
-                                    <select class="form-control" id="sel1">
-                                        <option>Bard</option>
-                                        <option>Fighter</option>
-                                        <option>Rogue</option>
-                                        <option>Druid</option>
-                                        <option>Monk</option>
-                                    </select>
-                                    <br>
+                                @for (int i = 0; i < ViewBag.Players; i++)
+                                {
+                                <div class="col-sm-4">
+                                    <div class="playerdiv">
+
+                                        <h4>Player @(i+1)</h4>
+                                        <div class="row">
+                                            <label for="txtPlayerName">Name: </label>
+                                            <input name="txtPlayerName" type="text" />
+                                        </div>
+                                        <div class="row">
+                                            <label for="txtPlayerInit">Init: </label>
+                                            <input name="txtPlayerInit" type="text" />
+                                        </div>
+                                        <div class="row">
+                                            <div class="form-group">
+                                                <label for="sel1">Select Class (select one):</label>
+                                                <select class="form-control" name="sel1">
+                                                    <option>Bard</option>
+                                                    <option>Fighter</option>
+                                                    <option>Rogue</option>
+                                                    <option>Druid</option>
+                                                    <option>Monk</option>
+                                                </select>
+                                                <br>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                        }
-                    </form>
+                                }
+                             </div>
+                        </form>
 
-                    <btn class="btn btn-success" id="btnCharDet">Get Characters</btn>
+                        <btn class="btn btn-success" id="btnCharDet">Get Characters</btn>
 
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="col-lg-2">
-            <div class="col-lg-12">
-                <img class="imgVersus" src="~/images/versus.jpeg" />
-            </div>
-            <div class="col-lg-12">
-                <h3>Room Event</h3>
-                <div id="divEvent">
-                    <button id="btnEventDetails" class="btn btn-success">Get Event</button>
+            <div class="col-lg-2 opacityback">
+                <div class="col-lg-12">
+                    <img class="imgVersus" src="~/images/vs.png" />
+                </div>
+                <div class="col-lg-12">
+                    <h3>Room Event</h3>
+                    <div id="divEvent">
+                        <button id="btnEventDetails" class="btn btn-success">Get Event</button>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="col-lg-5">
-            <div id="divMonDet">
-                <div class="row">
-                    <label for="txtMonsterInit">Init: </label>
-                    <input id="txtMonsterInit" type="text" />
+            <div class="col-lg-5">
+                <div id="divMonDet" class="opacityback">
+                    <div class="row">
+                        <label for="txtMonsterInit">Init: </label>
+                        <input id="txtMonsterInit" type="text" />
+                    </div>
+                    <btn class="btn btn-success" id="btnMonDet">Get Monster</btn>
                 </div>
-                <btn class="btn btn-success" id="btnMonDet">Get Monster</btn>
             </div>
         </div>
     </div>
 </div>
 <script>
-        $(document).ready(function () {
+    $(document).ready(function () {
+
+        //Change Biome Background
+        $("#divBackground").css("background-image", "url('../../images/Biomes/@source')");
+
+
         $("#btnMonDet").click(function () {
             $("#divMonDet").load("/Levels/GetMonDetails",
                 { id: @Model.ID });

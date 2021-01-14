@@ -13,7 +13,7 @@
     <div class="row">
         @for (int i = 0; i < item.PlayerQty; i++)
         {
-            <div class="col-md-4 divPlayer" >
+            <div class="col-sm-4 opacityback" >
                 <img class="imgChar" src="~/images/Characters/@(images[rd.Next(images.Count)])" />
                 <h4>Player @(i+1)</h4>
             </div>

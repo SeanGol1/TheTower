@@ -144,9 +144,9 @@ namespace TheTower.Controllers
                 _context.Add(session);
                 _context.SaveChanges();
                 Task.Delay(1000).GetAwaiter().GetResult();
-                GetMonsterList(session);
+                await GetMonsterList(session);
                 Task.Delay(1000).GetAwaiter().GetResult();
-                GetMonsterCRRoll(session.ID);
+                await GetMonsterCRRoll(session.ID);
                 return RedirectToAction("Details", "Sessions", new { id = session.ID });
             }
             return View(session);

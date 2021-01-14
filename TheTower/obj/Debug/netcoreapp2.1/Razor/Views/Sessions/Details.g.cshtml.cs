@@ -113,7 +113,7 @@ WriteAttributeValue("", 901, ViewBag.CRoomLevel, 901, 19, false);
             WriteLiteral(" style=\"max-width : 50px;\" />\r\n\r\n        </div>\r\n        <div class=\"col-md-2\">\r\n            ");
             EndContext();
             BeginContext(1014, 91, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "2a9348b586a54b5cac890702077401e8", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "efa94ebebfc64193823c57bffbe4079d", async() => {
                 BeginContext(1085, 16, true);
                 WriteLiteral("Create New Level");
                 EndContext();
@@ -368,7 +368,7 @@ WriteAttributeValue("", 3162, i, 3162, 4, false);
             WriteLiteral("        </div>\r\n    </div>\r\n</div>\r\n<div>\r\n    ");
             EndContext();
             BeginContext(3368, 38, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "b33648e6aebc4b0ebf290cccc2c79fb8", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "55faa702601a4107880d74769c32f39a", async() => {
                 BeginContext(3390, 12, true);
                 WriteLiteral("Back to List");
                 EndContext();

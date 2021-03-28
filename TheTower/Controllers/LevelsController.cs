@@ -83,7 +83,7 @@ namespace TheTower.Controllers
                         select b;
             model = query.ToList();
 
-            return PartialView("BiomeItemView", model);
+            return PartialView("_GetBiomeListView", model);
         }
 
         public ActionResult GetNewEvent(int roll)
@@ -98,6 +98,8 @@ namespace TheTower.Controllers
             return PartialView("_EventItemView", model);
         }
 
+
+
         public ActionResult GetEventDetails(int? id)
         {
             Event model = null;
@@ -108,6 +110,17 @@ namespace TheTower.Controllers
             model = query.FirstOrDefault();
 
             return PartialView("_GetEventView", model);
+        }
+
+        public ActionResult GetEventList()
+        {
+            List<Event> model = null;
+
+            var query = from e in _context.Event
+                        select e;
+            model = query.ToList();
+
+            return PartialView("_GetEventListView", model);
         }
 
         public ActionResult GetNewCR(int roll , int sessionid)
@@ -122,7 +135,18 @@ namespace TheTower.Controllers
 
             return PartialView("_CRItemList", model);
         }
+        public ActionResult GetMonCRList(int sessionid)
+        {
+            List<CRRoll> model = null;
 
+            var query = from m in _context.CRRoll
+                        where m.SessionId == sessionid
+                        orderby m.RollNumber
+                        select m;
+            model = query.ToList();
+
+            return PartialView("_GetMonCRListView", model);
+        }
         public ActionResult GetNewMonDetail(int roll, int sessionid, int cr)
         {
             List<Monster> model = null;
@@ -240,6 +264,42 @@ namespace TheTower.Controllers
            return View();
         }
 
+        // GET: Levels/Details/5
+        public async Task<IActionResult> DMScreen(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var level = await _context.Level
+                .FirstOrDefaultAsync(m => m.ID == id);
+            if (level == null)
+            {
+                return NotFound();
+                
+            }
+            var query = from s in _context.Session
+                        where s.ID == level.SessionID
+                        select s;
+            Session session = query.FirstOrDefault();
+
+            var query2 = from m in _context.Monster
+                         where m.ID == level.MonsterID
+                         select m;
+            Monster Mon = query2.FirstOrDefault();
+
+            string link = Mon.Name.Replace(" ", "%20");
+            //string source = Mon.Source;
+            //source = source.Substring(0, source.IndexOf(" ") + 1);
+            //link = link + '_' + source;
+            ViewBag.Players = session.PlayerQty;
+            ViewBag.MonName = Mon.Name;
+            ViewBag.Link = "https://roll20.net/compendium/dnd5e/" + link + "#h-" + link;
+            ViewBag.SessionID = session.ID;
+
+            return View(level);
+        }
 
         // GET: Levels/Details/5
         public async Task<IActionResult> Details(int? id)

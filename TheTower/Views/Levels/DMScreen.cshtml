@@ -1,0 +1,57 @@
+﻿@model TheTower.Models.Level
+
+@{
+    ViewData["Title"] = "DMScreen";
+}
+
+<script>
+    $(document).ready(function () {
+        var monName = '@ViewBag.MonName';
+        monName = monName.replace(/\s+/g, '-').toLowerCase();
+
+           /*$.ajax({
+               type: "GET",
+               url: "'https://www.dnd5eapi.co/api/mosters/'" + monName + "'",
+               dataType: JSON,                
+               success: sortData(data)
+           });*/
+       /* $.get( "https://www.dnd5eapi.co/api/monsters/" + monName, function(data) {
+  alert( "success" );
+})
+  .done(function(data) {
+      alert("second success");
+      $('#monDetails').html(data);
+  })
+  .fail(function() {
+    alert( "error" );
+  })
+  .always(function() {
+    
+  });*/
+
+               $.get( "https://5e.tools/bestiary.html#" + monName, function(data) {
+  alert( "success" );
+})
+  .done(function(data) {
+      alert("second success");
+      $('#monDetails').html(data);
+  })
+  .fail(function() {
+    alert( "error" );
+  })
+  .always(function() {
+    
+  });
+
+      
+
+   
+    });
+</script>
+<h2>DMScreen</h2>
+
+<div>
+    <p id="monDetails"></p>
+    <iframe src="@ViewBag.Link" width="100%" height="750" title="roll20"></iframe>
+</div>
+

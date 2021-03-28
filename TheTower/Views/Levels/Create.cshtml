@@ -80,9 +80,12 @@
                         <button type="button" id="btnBiomeGen" class="btn btn-info">Gen</button>
                     </div>
                     <div id="divBiomeDetails"></div>
-                    <button type="button" class="btn btn-info">View List</button>
-                    <div class="popuptext" id="myPopup">
+                    @*<div class="popup">*@
+                    <button type="button" id="btnBiomeList" class="btn btn-info" onclick="BiomeList()">View List</button>
+                    <div class="popuptext" id="BiomePopup">
+                        <div id="divBiomeList"></div>
                     </div>
+                    @*</div>*@
                 </div>
             </div>
 
@@ -96,9 +99,12 @@
                         <button type="button" id="btnEventGen" class="btn btn-info">Gen</button>
                     </div>
                     <div id="divEventDetails"></div>
-                    <div class="popup">
-                        <button type="button" class="btn btn-info">View List</button>
+                    @*<div class="popup">*@
+                    <button type="button" id="btnEventList" class="btn btn-info" onclick="EventList()">View List</button>
+                    <div class="popuptext" id="EventPopup">
+                        <div id="divEventList"></div>
                     </div>
+                    @*</div>*@
                 </div>
             </div>
         </div>
@@ -118,7 +124,10 @@
                     <div id="divCRDetails">
 
                     </div>
-                    <button class=" btn btn-info">View List</button>
+                    <button class=" btn btn-info" id="btnMonCRList" onclick="MonCRList()">View List</button>
+                    <div class="popuptext" id="MonCRPopup">
+                        <div id="divMonCRList"></div>
+                    </div>
                 </div>
             </div>
 
@@ -162,6 +171,34 @@
   popup.classList.toggle("show");
 }
 
+        function BiomeList() {
+  var popup = document.getElementById("BiomePopup");
+    if( popup.style.display === "none"){
+  popup.classList.toggle("show");
+    }else{
+    popup.classList.toggle("hide");
+    }
+}
+
+    function EventList() {
+        var popup = document.getElementById("EventPopup");
+        if (popup.style.display === "none") {
+            popup.classList.toggle("show");
+        } else {
+            popup.classList.toggle("hide");
+        }
+    }
+
+      function MonCRList() {
+            var popup = document.getElementById("MonCRPopup");
+            if( popup.style.display === "none"){
+                popup.classList.toggle("show");
+            }else{
+                popup.classList.toggle("hide");
+            }
+      }
+
+
     $(document).ready(function () {
         $("#btnRoomGen").click(function () {
             var roomroll = $("#txtRoomRoll").val();
@@ -181,7 +218,6 @@
                 data: JSON.stringify(data),
                 dataType: "json"
             });
-
     });
     $(document).ready(function () {
         $("#btnBiomeGen").click(function () {
@@ -192,10 +228,22 @@
     });
 
     $(document).ready(function () {
+        $("#btnBiomeList").click(function () {
+            $("#divBiomeList").load("/Levels/GetBiomeList");
+        });
+    });
+
+    $(document).ready(function () {
         $("#btnEventGen").click(function () {
             var Eventroll = $("#txtEvent").val();
             $("#divEventDetails").load("/Levels/GetNewEvent",
                 { roll: Eventroll });
+        });
+    });
+
+    $(document).ready(function () {
+        $("#btnEventList").click(function () {
+            $("#divEventList").load("/Levels/GetEventList");
         });
     });
 
@@ -216,7 +264,12 @@
         });
     });
 
-
+    $(document).ready(function () {
+        $("#btnMonCRList").click(function () {
+            $("#divMonCRList").load("/Levels/GetMonCRList",
+                {  sessionid: @ViewBag.CSessionID });
+        });
+    });
 
 
 

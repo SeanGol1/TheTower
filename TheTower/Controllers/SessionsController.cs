@@ -54,6 +54,47 @@ namespace TheTower.Controllers
             return View();
         }
 
+        // GET: Sessions/AddRestRooms/5
+        public async Task<IActionResult> AddRestRooms(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var session = await _context.Session
+                .FirstOrDefaultAsync(m => m.ID == id);
+            if (session == null)
+            {
+                return NotFound();
+            }
+
+            //var results = _repo.GetSessionLevels(session.ID);
+
+            ViewBag.SessionId = session.ID;
+            return View();
+        }
+
+        // POST: Sessions/AddRestRooms
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> AddRestRooms(int id, [Bind("RoomLevel,EventID,Name,SessionID,BiomeID,CRLevel,MonsterID,CurrentRoom")] Level level)
+        {
+            //Add Levels to DB and return to page to add more.
+            if (ModelState.IsValid)
+            {
+                level.SessionID = id;
+                level.MonsterID = 1;                
+                level.BiomeID = -1;
+                level.EventID = -1;
+                _context.Add(level);
+                await _context.SaveChangesAsync();
+                
+                return RedirectToAction("AddRestRooms", "Sessions", new { id = level.SessionID });
+            }
+            return View(level);
+        }
+
         public int GetPartyXP(int lvl, int qty)
         {
             int xp = 0;
@@ -133,7 +174,7 @@ namespace TheTower.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,DMName,PlayerLevel,PlayerQty")] Session session)
+        public async Task<IActionResult> Create([Bind("ID,DMName,PlayerLevel,PlayerQty,RestRoomQty")] Session session)
         {
             
 
@@ -147,7 +188,7 @@ namespace TheTower.Controllers
                 await GetMonsterList(session);
                 Task.Delay(1000).GetAwaiter().GetResult();
                 await GetMonsterCRRoll(session.ID);
-                return RedirectToAction("Details", "Sessions", new { id = session.ID });
+                return RedirectToAction("AddRestRooms", "Sessions", new { id = session.ID });
             }
             return View(session);
         }
@@ -191,11 +232,13 @@ namespace TheTower.Controllers
             Random rd = new Random();
             foreach (var mon in MonList)
             {
-                if (mon.XP <= (session.XP * 1.5) && mon.XP >= (session.XP * .5))
+                if (mon.XP <= (session.XP * 1.6) && mon.XP >= (session.XP * .3))
                 {
                     TempMonList.Add(mon);
                 }
             }
+
+            // Get Highest CR and Lowest CR
             int high = 0;
             int low = 100;
             foreach (var mon in TempMonList)
@@ -209,14 +252,21 @@ namespace TheTower.Controllers
                     high = mon.ChallengeRating;
                 }
             }
-
+            //Match CR to Roll Numbers
             for (int i = 1; i < 21; i++)
             {
                 CRRoll crEntry = new CRRoll();
                 crEntry.RollNumber = i;
                 crEntry.SessionId = session.ID;
                 crEntry.MonsterQTY = 1;
-                crEntry.XP = rd.Next(low, high);
+                if (i == 20)
+                {
+                    crEntry.XP = high;
+                }
+                else
+                {
+                    crEntry.XP = rd.Next(low, (high - 1));
+                }
                 crEntry.MonsterId = 2;
                 _context.CRRoll.Add(crEntry);
                 //GetMonsterCRRoll(crEntry);
@@ -224,6 +274,7 @@ namespace TheTower.Controllers
             await _context.SaveChangesAsync();
 
         }
+
 
         public async Task GetMonsterCRRoll(int sessionid)
         {
@@ -249,6 +300,8 @@ namespace TheTower.Controllers
                     moncr.RollNo = i;
                     moncr.SessionId = sessionid;
                     _context.MonsterCR.Add(moncr);
+                    var mon = await _context.Monster.FindAsync(moncr.MonsterId);
+                    TempMonCRList.Remove(mon);
                     //Remove Monster from Temp List!!!
                 }
 
@@ -353,6 +406,16 @@ namespace TheTower.Controllers
             foreach (var crroll in CRRolls)
             {
                 _context.Remove(crroll);
+            }
+
+            //Delete MonsterCR.
+            var query3 = from mcr in _context.MonsterCR
+                         where mcr.SessionId == id
+                         select mcr;
+            List<MonsterCR> MonCRs= query3.ToList();
+            foreach (var moncr in MonCRs)
+            {
+                _context.Remove(moncr);
             }
 
             _context.Session.Remove(session);

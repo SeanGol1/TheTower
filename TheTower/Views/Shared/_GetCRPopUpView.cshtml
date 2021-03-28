@@ -1,0 +1,8 @@
+﻿@model IEnumerable<TheTower.Models.CRRoll>
+
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <p>@item.RollNumber = @item.XP</p>
+        }
+    </div>

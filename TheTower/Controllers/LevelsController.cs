@@ -38,25 +38,24 @@ namespace TheTower.Controllers
                         where r.DiceRoll == roll
                         select r;
             model = query.ToList();
-            List<Level> levelexist = null;
+            Level levelexist = null;
             foreach (var item in model)
             {
                 var query2 = from l in _context.Level
                              where l.SessionID == sessionid
                              where l.RoomLevel == (curRoom + item.RoomMove)
                              select l;
-                levelexist = query2.ToList();
+                levelexist = query2.FirstOrDefault();
             }
-            if (levelexist.Count() == 0)
+            if (levelexist == null)
             {
                 ViewBag.LevelExist = false;
             }
             else
             {
-                foreach (var item in levelexist)
-                {
                     ViewBag.LevelExist = true;
-                }
+                ViewBag.Name = levelexist.Name;
+                
             }
 
 
@@ -70,6 +69,17 @@ namespace TheTower.Controllers
 
             var query = from b in _context.Biome
                         where b.RollNumber == roll
+                        select b;
+            model = query.ToList();
+
+            return PartialView("BiomeItemView", model);
+        }
+
+        public ActionResult GetBiomeList()
+        {
+            List<Biome> model = null;
+
+            var query = from b in _context.Biome
                         select b;
             model = query.ToList();
 
@@ -180,6 +190,56 @@ namespace TheTower.Controllers
             return PartialView("_GetCharacterView", model);
         }
 
+        public ActionResult GetCRPopUp(int id)
+        {
+            List<CRRoll> model = null;
+
+            var query = from cr in _context.CRRoll
+                        where cr.SessionId == id
+                        orderby cr.RollNumber
+                        select cr;
+            model = query.ToList();
+
+            return PartialView("_GetCRPopUpView", model);
+        }
+
+        public class Data
+        {
+            public int id { get; set; }
+            public int newRoom { get; set; }
+        }
+        [HttpPost]
+        public async Task<IActionResult> SubmitRoom([FromBody]Data data)
+        {
+
+            var query = from s in _context.Session
+                        where s.ID == data.id
+                        select s;
+            Session session = query.FirstOrDefault();
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    session.CurrentLevel = data.newRoom;
+                    _context.Update(session);
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!LevelExists(session.ID))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+                return RedirectToAction(nameof(Index));
+            }
+           return View();
+        }
+
 
         // GET: Levels/Details/5
         public async Task<IActionResult> Details(int? id)
@@ -207,6 +267,7 @@ namespace TheTower.Controllers
 
             ViewBag.Players = session.PlayerQty;
             ViewBag.BiomeRoll = biome.RollNumber;
+            ViewBag.SessionID = session.ID;
 
             return View(level);
         }

@@ -48,8 +48,9 @@
     }
 }
 <div class"container-fluid body-content">
-    <div class="row modal-header" id="divBanner">
+    <div class="row modal-header" id="divBanner">        
         <h3 id="roomNoHead">Room @Model.RoomLevel</h3>
+        <a id="btnLevelView" class="btn btn-success" asp-action="Details" asp-controller="Sessions" asp-route-id="@ViewBag.SessionID">Level View</a> 
     </div>
 
     <div class="row newcontainer" id="divBackground">
@@ -128,6 +129,8 @@
 
 
         $("#btnMonDet").click(function () {
+            var monroll = $("#txtMonsterRoll").val();
+            var CRroll = $("#txtMonRoll").val(); 
             $("#divMonDet").load("/Levels/GetMonDetails",
                 { id: @Model.ID });
         });
@@ -138,10 +141,14 @@
         });
 
         $("#btnCharDet").click(function () {
-    var monroll = $("#txtMonsterRoll").val();
-            var CRroll = $("#txtMonRoll").val();
+            var pname = $("txtPlayerName").val();
+            var pinit = $("txtPlayerInit").val();
+            var pclass = $("input[name=sell]").val();
+            
+             
             $("#divCharDet").load("/Levels/GetCharDetails",
-                { id: @Model.ID });
+                { id: @Model.ID , name: pname, init: pinit, charclass: pclass });
         });
+
     });
 </script>

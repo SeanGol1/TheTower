@@ -7,14 +7,19 @@
 }
 
 <div class="row">
-    <div class="col-md-10">
+    <div class="col-md-8">
         <h1>TOWER OF LUCK'N ASSHOLES</h1>
+    </div>
+    <div class="col-md-2">
+        <!--<span style="font-size:48px" class="fa">&#8505;</span>
+        <span class="fa fa-info-circle"></span>-->
     </div>
     <div class="col-md-2">
         <div class="row">
             <h3 class="col-xs-6">Current Room:</h3>
             <div class="col-xs-6">
                 <input class="input-lg txtCurrentRoll" id="txtCurrentRoom" type="text" value="@ViewBag.CRoomLevel" />
+                <button type="button" class="btn btn-default" id="btnSubmitRoom">Update</button>
             </div>
         </div>
     </div>
@@ -24,45 +29,76 @@
 <form asp-controller="Levels" asp-action="Create">
     <div class="row">
         <div class="col-sm-6">
+
+            <!--   Roll For Room    -->
+
             <div class="col-md-12">
                 <div class="row rollWindow-Content">
                     <h4>Roll for Room (d12)</h4>
                     <div class="row">
-                        <input asp-for="RoomLevel" id="txtRoomRoll" type="text" />
+                        <input asp-for="RoomLevel" id="txtRoomRoll" type="text" required />
                         <button type="button" class="btn btn-info" id="btnRoomGen">Gen</button>
+                        @* <button type="button" class="btn btn-info" id="btnSubmitRoom">Submit</button>*@
+
                     </div>
-                    <div id="divNewRoom">
-                        <h4 id="hRoomMove">@ViewBag.vbRoomMove</h4>
-                        <h5>Your Next Floor <b id="hNextRoom">@ViewBag.vbNextRoom</b></h5>
-                        <button type="button" class="btn btn-info">View List</button>
+                    <div id="divNewRoom"></div>
+                    <div class="popup">
+                        <button type="button" class="btn btn-info" onclick="myFunction()">View List</button>
+                        <div class="popuptext" id="myPopup">
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    <p>12 - +6</p>
+                                    <p>11 - +5</p>
+                                    <p>10 - +4</p>
+                                    <p>9 - +3</p>
+                                    <p>8 - +2</p>
+                                    <p>7 - +1</p>
+                                </div>
+                                <div class="col-xs-6">
+                                    <p>6 - -1</p>
+                                    <p>5 - -2</p>
+                                    <p>4 - -3</p>
+                                    <p>3 - -4</p>
+                                    <p>2 - -5</p>
+                                    <p>1 - -6</p>
+                                </div>
+
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             </div>
 
+            <!--   Roll For Biome  -->
+
             <div class="col-md-12">
                 <div class="row rollWindow-Content">
-                    <h4>Roll for Biom (d12)</h4>
+                    <h4>Roll for Biome (d12)</h4>
                     <div class="row">
-                        <input asp-for="BiomeID" id="txtBiome" type="text" />
+                        <input asp-for="BiomeID" id="txtBiome" type="text" required />
                         <button type="button" id="btnBiomeGen" class="btn btn-info">Gen</button>
                     </div>
-                    <div id="divBiomeDetails">
-                        <h4>Biome Details</h4>
-                    </div>
+                    <div id="divBiomeDetails"></div>
                     <button type="button" class="btn btn-info">View List</button>
+                    <div class="popuptext" id="myPopup">
+                    </div>
                 </div>
             </div>
+
+            <!--   Roll for Event   -->
+
             <div class="col-md-12">
                 <div class="row rollWindow-Content">
                     <h4>Roll for Event (d8)</h4>
                     <div class="row">
-                        <input asp-for="EventID" id="txtEvent" type="text" />
+                        <input asp-for="EventID" id="txtEvent" type="text" required />
                         <button type="button" id="btnEventGen" class="btn btn-info">Gen</button>
                     </div>
-                    <div id="divEventDetails">
-                        <h4>Event Details</h4>
+                    <div id="divEventDetails"></div>
+                    <div class="popup">
+                        <button type="button" class="btn btn-info">View List</button>
                     </div>
-                    <button type="button" class="btn btn-info">View List</button>
                 </div>
             </div>
         </div>
@@ -70,25 +106,30 @@
 
 
         <div class="col-sm-6">
+
+            <!--   Roll For Monster CR   -->
             <div class="col-md-12">
                 <div class="row rollWindow-Content">
                     <h4>Roll for Monster Challenge (d20)</h4>
                     <div class="row">
-                        <input asp-for="CRLevel" id="txtMonRoll" type="text" />
+                        <input asp-for="CRLevel" id="txtMonRoll" type="text" required />
                         <button type="button" id="btnMonGen" class="btn btn-info">Gen</button>
                     </div>
                     <div id="divCRDetails">
 
                     </div>
-                    <a class=" btn btn-info" asp-controller="Monsters" asp-action="Index">View List</a>
+                    <button class=" btn btn-info">View List</button>
                 </div>
             </div>
+
+
+            <!--    Roll for Monster   -->
             <div class="col-md-12">
                 <div class="row rollWindow-Content">
                     <div id="divEachMonster">
                         <h4>Roll for Monster(d4)</h4>
                         <div class="row">
-                            <input asp-for="MonsterID" id="txtMonsterRoll" type="text" />
+                            <input asp-for="MonsterID" id="txtMonsterRoll" type="text" required />
                             <button type="button" id="btnMonsterGen" class="btn btn-info">Gen</button>
                             <button type="button" class="btn btn-info">View Stats</button>
                             <button type="button" class="btn btn-info">View Image</button>
@@ -108,7 +149,7 @@
 </form>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <!--<a class="btn btn-danger" asp-controller="Sessions" asp-action="Details" asp-route-id="">Back to List</a>-->
 </div>
 
 @section Scripts {
@@ -116,14 +157,32 @@
 }
 
 <script>
+    function myFunction() {
+  var popup = document.getElementById("myPopup");
+  popup.classList.toggle("show");
+}
+
     $(document).ready(function () {
         $("#btnRoomGen").click(function () {
             var roomroll = $("#txtRoomRoll").val();
             $("#divNewRoom").load("/Levels/GetNewLevel",
-                { roll: roomroll , curRoom: @ViewBag.CRoomLevel , sessionid: @ViewBag.CSessionID});
+                { roll: roomroll, curRoom: @ViewBag.CRoomLevel , sessionid: @ViewBag.CSessionID});
         });
     });
 
+    $("#btnSubmitRoom").click(function () {
+        var data = {};
+        data.id = '@ViewBag.CSessionID';
+        data.newRoom = $("#txtCurrentRoom").val();
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("SubmitRoom", "Levels")',
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify(data),
+                dataType: "json"
+            });
+
+    });
     $(document).ready(function () {
         $("#btnBiomeGen").click(function () {
             var Biomeroll = $("#txtBiome").val();
@@ -156,6 +215,11 @@
                 { roll: monroll, sessionid: @ViewBag.CSessionID , cr: CRroll });
         });
     });
+
+
+
+
+
     /*
     $(document).ready(function () {
         $("#txtMonRoll").focusout(function () {

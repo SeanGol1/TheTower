@@ -1,27 +1,55 @@
 ﻿@model IEnumerable<RoomRoll>
 @{
-    
+
     int newRoom = 0;
-    foreach (var item in Model) {        
+    foreach (var item in Model)
+    {
         newRoom = ViewBag.CRoomLevel + item.RoomMove;
     }
+    ViewBag.NewRoom = newRoom;
+
 }
 
 @foreach (var item in Model)
 {
     <h4>You rolled a : @Html.DisplayFor(modelItem => item.DiceRoll) </h4>
     <h4>Going Up/Down: @Html.DisplayFor(modelItem => item.RoomMove) Floors</h4>
-    <h5>Next Floor: @newRoom</h5>
-    @if(ViewBag.LevelExist == false)
+    <h5>Next Floor: <b id="newroom">@newRoom</b></h5>
+    @if (ViewBag.LevelExist == false)
     {
         <h5>You have not entered this room yet!</h5>
+        if (newRoom == 0)
+        {
+            <h3>This is Ground Zero! <br /> Short Rest and Reroll...</h3>
+        }
     }
     else
     {
         <h5>YOU HAVE ALREADY BEEN HERE!</h5>
+        <h5>@ViewBag.Name</h5>
+
     }
 
 
 
 
 }
+
+<script>
+    $(document).ready(function () {
+
+
+   /*  $("#btnSubmitRoom").click(function () {
+            $.ajax({
+                type: "POST",
+                url: 'Url.Action("SubmitRoom", "Levels")',
+                contentType: "application/json; charset=utf-8",
+                data: { id: "ViewBag.CSessionID" , newRoom : "newRoom" },
+                dataType: "json",
+                success: function () { alert('Success'); },
+                error: function () { alert('Error'); },
+                
+            });
+        });
+    });*/
+</script>

@@ -67,7 +67,7 @@ using TheTower.Models;
             WriteLiteral("\r\n<div class=\"row jumbotron\">\r\n    <div class=\"col-md-6\">\r\n        ");
             EndContext();
             BeginContext(159, 95, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "378855977fb1481da2975d269a06b64b", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "23500d23ab744c7981a652f62c118ca4", async() => {
                 BeginContext(232, 18, true);
                 WriteLiteral("Create New Session");
                 EndContext();
@@ -161,7 +161,7 @@ using TheTower.Models;
             WriteLiteral("\r\n                        </td>\r\n                        <td>\r\n\r\n                            ");
             EndContext();
             BeginContext(1510, 108, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "7cffa0957cf04f97a6e4cffc902c60c1", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "08484fc5a8a54577a4eb140e017a6e14", async() => {
                 BeginContext(1608, 6, true);
                 WriteLiteral("Select");
                 EndContext();
@@ -199,7 +199,7 @@ using TheTower.Models;
             WriteLiteral(" |\r\n                            ");
             EndContext();
             BeginContext(1650, 103, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "3bd5379a9ca24c44a409b11b511a71cb", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "8a71ed6428304d90a4e2175112aff0e7", async() => {
                 BeginContext(1745, 4, true);
                 WriteLiteral("Edit");
                 EndContext();
@@ -237,7 +237,7 @@ using TheTower.Models;
             WriteLiteral(" |\r\n                            ");
             EndContext();
             BeginContext(1785, 106, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "a83864870d9d41eab5002b533e748996", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "bbe93e2e83ee4af8979ce1aae5683594", async() => {
                 BeginContext(1881, 6, true);
                 WriteLiteral("Delete");
                 EndContext();

@@ -101,7 +101,7 @@ Write(Html.DisplayFor(modelItem => item.ChallengeRating));
             WriteLiteral("</h6>\r\n    ");
             EndContext();
             BeginContext(319, 59, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "bf1436b896e84e9c86287379096792f9", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4d93d2ec9d6b40bb9d1e44ca66b2e330", async() => {
                 BeginContext(367, 7, true);
                 WriteLiteral("Details");
                 EndContext();

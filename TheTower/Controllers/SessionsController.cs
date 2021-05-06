@@ -95,6 +95,56 @@ namespace TheTower.Controllers
             return View(level);
         }
 
+        // GET: Sessions/AddPlayers/5
+        public async Task<IActionResult> AddPlayers(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var session = await _context.Session
+                .FirstOrDefaultAsync(m => m.ID == id);
+            if (session == null)
+            {
+                return NotFound();
+            }
+
+            List<Player> playerlist = null;
+            var query = from p in _context.Player
+                        where p.SessionId == id
+                        select p;
+            playerlist = query.ToList();
+            ViewBag.SessionId = session.ID;
+            ViewBag.PlayerQty = session.PlayerQty;
+            ViewBag.PlayerCount = playerlist.Count();
+                
+            if (playerlist.Count() == session.PlayerQty)
+            {
+                return RedirectToAction("Details", "Sessions", new { id = session.ID });
+            }
+            return View();
+        }
+
+        // POST: Sessions/AddRestRooms
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> AddPlayers(int id, [Bind("Name,Char")] Player player)
+        {
+            //Add Levels to DB and return to page to add more.
+            if (ModelState.IsValid)
+            {
+                player.Init = 0;
+                player.SessionId = id;
+                _context.Add(player);
+                await _context.SaveChangesAsync();
+
+                return RedirectToAction("AddPlayers", "Sessions", new { id = player.SessionId });
+            }
+            return View(player);
+        }
+
+
         public int GetPartyXP(int lvl, int qty)
         {
             int xp = 0;
@@ -416,6 +466,16 @@ namespace TheTower.Controllers
             foreach (var moncr in MonCRs)
             {
                 _context.Remove(moncr);
+            }
+
+            //Delete Players.
+            var query4 = from p in _context.Player
+                         where p.SessionId == id
+                         select p;
+            List<Player> players = query4.ToList();
+            foreach (var p in players)
+            {
+                _context.Remove(p);
             }
 
             _context.Session.Remove(session);

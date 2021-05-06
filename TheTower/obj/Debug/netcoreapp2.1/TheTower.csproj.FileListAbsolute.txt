@@ -92,3 +92,4 @@ C:\Users\seang\source\repos\The Tower App\TheTower\obj\Debug\netcoreapp2.1\Razor
 C:\Users\seang\source\repos\The Tower App\TheTower\obj\Debug\netcoreapp2.1\Razor\Views\Shared\_GetEventListView.g.cshtml.cs
 C:\Users\seang\source\repos\The Tower App\TheTower\obj\Debug\netcoreapp2.1\Razor\Views\Shared\_getMonCRListView.g.cshtml.cs
 C:\Users\seang\source\repos\The Tower App\TheTower\obj\Debug\netcoreapp2.1\Razor\Views\Levels\DMScreen.g.cshtml.cs
+C:\Users\seang\source\repos\The Tower App\TheTower\obj\Debug\netcoreapp2.1\Razor\Views\Sessions\AddPlayers.g.cshtml.cs

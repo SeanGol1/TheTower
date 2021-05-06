@@ -46,6 +46,8 @@
         default:
             break;
     }
+
+    
 }
 <div class"container-fluid body-content">
     <div class="row modal-header" id="divBanner">        
@@ -146,7 +148,7 @@
             var pinit = $("txtPlayerInit").val();
             var pclass = $("input[name=sell]").val();
             
-             
+            
             $("#divCharDet").load("/Levels/GetCharDetails",
                 { id: @Model.ID , name: pname, init: pinit, charclass: pclass });
         });

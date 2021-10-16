@@ -32,12 +32,11 @@ We used one map for all fights. Dungeons & Dragons Tactical Maps Reincarnated (D
 ## Use
 
 You must create a list of monsters that you will be using. 
-I used 4 Monsters for every CR level.
-And then about 7/8 CR Levels.
+I used 4 Monsters for every CR level and about 7/8 CR Levels.
 
 
 # Setup
-Migrate the DB from the classes. This should create the Database and seed some data into it. 
+Migrate the DB from the classes. This should create the Database and seed some data into it. (Biomes, Level-Rolls and Events)  
 
 
 
@@ -49,6 +48,7 @@ There is also some javascript and jQuery used for functionality on the front end
 
 ### Back End
 The back end is written in a C# ASP.NET MVC Application. I have just been running it on my localhost to play but could be set up on IIS for all players to access if needed. 
+Data is saved in a SQL Database running on the local machine. (Can be migrated from the classes)
 
 
 

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -19,7 +20,9 @@ namespace TheTower.Models
         {
             Name = _name;
             RollNumber = _number;
-            Description = _desc;
+            Description = _desc;           
+
+
         }
     }
 }

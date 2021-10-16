@@ -29,7 +29,7 @@ namespace TheTower.Models
         public DbSet<Session> Session { get; set; }
         public DbSet<CRRoll> CRRoll { get; set; }
         public DbSet<Player> Player { get; set; }
-        public DbSet<TheTower.Models.Level> Level { get; set; }
+        public DbSet<Level> Level { get; set; }
 
         
     }

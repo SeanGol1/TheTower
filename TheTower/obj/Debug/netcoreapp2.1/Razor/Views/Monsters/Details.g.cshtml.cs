@@ -135,7 +135,7 @@ using TheTower.Models;
             WriteLiteral("</h2>\r\n    ");
             EndContext();
             BeginContext(756, 47, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "a0c68924f10e4fe889e4bc1652827575", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "d3dcf3e8de5f4b06a7ff8959bb9b4dc2", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -160,7 +160,7 @@ AddHtmlAttributeValue("", 784, Model.ImagePath, 784, 16, false);
             WriteLiteral("\r\n</div>\r\n<div>\r\n    ");
             EndContext();
             BeginContext(824, 54, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "3fc2595f65dc427cbfda783c740d0c46", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "2c40355f90f543ae9fdc1d6b137c3c6b", async() => {
                 BeginContext(870, 4, true);
                 WriteLiteral("Edit");
                 EndContext();
@@ -195,7 +195,7 @@ AddHtmlAttributeValue("", 784, Model.ImagePath, 784, 16, false);
             WriteLiteral(" |\r\n    ");
             EndContext();
             BeginContext(886, 38, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "48513a22545f4ed7a558d9d57bdafb36", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "8ad8dcabe37846ef9ea1002bf6525141", async() => {
                 BeginContext(908, 12, true);
                 WriteLiteral("Back to List");
                 EndContext();

@@ -12,6 +12,7 @@ namespace TheTower.Controllers
 {
     public class SessionsController : Controller
     {
+        // Link DB Context and Repository
         private readonly TowerContext _context;
         private readonly TowerRepo _repo;
 
@@ -220,13 +221,11 @@ namespace TheTower.Controllers
         }
 
         // POST: Sessions/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("ID,DMName,PlayerLevel,PlayerQty,RestRoomQty")] Session session)
         {
-            
+            //
 
             if (ModelState.IsValid)
             {

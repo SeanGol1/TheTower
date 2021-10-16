@@ -13,6 +13,7 @@ namespace TheTower.Controllers
 {
     public class LevelsController : Controller
     {
+        // Link DB Context and Repository
         private readonly TowerContext _context;
         private readonly TowerRepo _repo;
 
@@ -28,10 +29,15 @@ namespace TheTower.Controllers
             return View(await _context.Level.ToListAsync());
         }
 
-        //Levels/Create Ajax Calls
+        //
+        // Levels/Create Ajax Calls
+        // Get Info From JQuery Ajax Call and then load a partial page inside the current page to display results.
+        //
 
+        //After the Gen button is clicked for Room Roll, find out what room will be next given the dice roll number.
         public ActionResult GetNewLevel(int roll, int curRoom, int sessionid)
         {
+
             List<RoomRoll> model = null;
 
             var query = from r in _context.RoomRoll
@@ -62,7 +68,7 @@ namespace TheTower.Controllers
             ViewBag.CRoomLevel = curRoom;
             return PartialView("RoomNumberPartialView", model);
         }
-
+        //After the Gen button is clicked for Biome, find out what Biome will be next given the dice roll number.
         public ActionResult GetNewBiome(int roll)
         {
             List<Biome> model = null;
@@ -74,7 +80,7 @@ namespace TheTower.Controllers
 
             return PartialView("BiomeItemView", model);
         }
-
+        //After the ViewList button is clicked on biome, display the list of biomes and relative roll numbers.
         public ActionResult GetBiomeList()
         {
             List<Biome> model = null;
@@ -85,7 +91,7 @@ namespace TheTower.Controllers
 
             return PartialView("_GetBiomeListView", model);
         }
-
+        //After the Gen button is clicked on event, find out what Event will be next given the dice roll number.
         public ActionResult GetNewEvent(int roll)
         {
             List<Event> model = null;
@@ -97,9 +103,7 @@ namespace TheTower.Controllers
 
             return PartialView("_EventItemView", model);
         }
-
-
-
+        //After the ViewList button is clicked on Event, display the list of Events and relative roll numbers.
         public ActionResult GetEventDetails(int? id)
         {
             Event model = null;
@@ -111,7 +115,7 @@ namespace TheTower.Controllers
 
             return PartialView("_GetEventView", model);
         }
-
+        //After the ViewList button is clicked on Event, display the list of Events and relative roll numbers.
         public ActionResult GetEventList()
         {
             List<Event> model = null;
@@ -122,7 +126,7 @@ namespace TheTower.Controllers
 
             return PartialView("_GetEventListView", model);
         }
-
+        //After the Gen button is clicked on CR Level, find out what Monster CR will be next given the dice roll number.
         public ActionResult GetNewCR(int roll , int sessionid)
         {
             CRRoll model = null;
@@ -135,6 +139,7 @@ namespace TheTower.Controllers
 
             return PartialView("_CRItemList", model);
         }
+        //After the ViewList button is clicked on CR List, display the list of Monster CR's and relative roll numbers.
         public ActionResult GetMonCRList(int sessionid)
         {
             List<CRRoll> model = null;
@@ -147,6 +152,7 @@ namespace TheTower.Controllers
 
             return PartialView("_GetMonCRListView", model);
         }
+        //After the Gen button is clicked on Monster, find out what Monster will be next given the dice roll number.
         public ActionResult GetNewMonDetail(int roll, int sessionid, int cr)
         {
             List<Monster> model = null;
@@ -187,7 +193,9 @@ namespace TheTower.Controllers
             return PartialView("MonsterQTYInputView", model);
         }*/
 
+        //
         //Levels/Details Ajax Calls
+        //
         public ActionResult GetMonDetails(int id)
         {
             List<Monster> model = null;
@@ -200,7 +208,7 @@ namespace TheTower.Controllers
 
             return PartialView("_GetMonsterView", model);
         }
-
+        //Get Character details and display.
         public ActionResult GetCharDetails(int id , string name, int init, string charclass)
         {
             List<Session> model = null;
@@ -227,6 +235,8 @@ namespace TheTower.Controllers
             return PartialView("_GetCRPopUpView", model);
         }
 
+        // If room is changed in the top right and update is clicked,
+        // Update the current room number in the DB.
         public class Data
         {
             public int id { get; set; }
@@ -264,7 +274,9 @@ namespace TheTower.Controllers
            return View();
         }
 
-        // GET: Levels/Details/5
+   
+
+        //Load up a screen of the Current monsters in use for DM use. 
         public async Task<IActionResult> DMScreen(int? id)
         {
             if (id == null)

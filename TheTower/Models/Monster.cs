@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -8,6 +9,8 @@ namespace TheTower.Models
     public class Monster
     {
         public int ID { get; set; }
+        public string Index { get; set; }
+        [JsonProperty("challenge_rating")]
         public int ChallengeRating { get; set; }
         public int XP { get; set; }
         public string Name { get; set; }
@@ -19,9 +22,10 @@ namespace TheTower.Models
         {
 
         }
-        public Monster(int _MonsterCR,int _number, string _name, string _page)
+        public Monster(int _MonsterCR,string _index,int _number, string _name, string _page)
         {
             ChallengeRating = _MonsterCR;
+            Index = _index;
             Name = _name;
             Source = _page;
             RollNumber = _number;
@@ -37,5 +41,17 @@ namespace TheTower.Models
             MonsterRdNumber = _number;
 
         }*/
+    }
+
+    public class MonsterResponse
+    {
+        public int Count { get; set; }
+        public List<Monster> Results { get; set; }
+    }
+
+    public class MonsterCreateViewModel
+    {
+        public Monster Monster { get; set; }
+        public List<Monster> MonsterList { get; set; }
     }
 }

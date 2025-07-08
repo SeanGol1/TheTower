@@ -1,10 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net.Http;
+using System.Threading.Tasks;
+using TheTower.Data;
 using TheTower.Models;
 
 namespace TheTower.Controllers
@@ -12,16 +14,22 @@ namespace TheTower.Controllers
     public class MonstersController : Controller
     {
         private readonly TowerContext _context;
+        private readonly TowerRepo _repo;
 
-        public MonstersController(TowerContext context)
+        public MonstersController(TowerContext context, TowerRepo repo)
         {
             _context = context;
+            _repo = repo;
         }
 
         // GET: Monsters
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Monster.OrderBy(m => m.RollNumber).OrderBy(m => m.ChallengeRating).ToListAsync());
+            return View(await _context.Monster
+    .OrderBy(m => m.RollNumber == null ? int.MaxValue : m.RollNumber)
+    .ThenBy(m => m.ChallengeRating == null ? double.MaxValue : m.ChallengeRating)
+    .ToListAsync());
+            //return View(await _context.Monster.OrderBy(m => m.RollNumber).OrderBy(m => m.ChallengeRating).ToListAsync());
         }
 
         // GET: Monsters/Details/5
@@ -43,9 +51,16 @@ namespace TheTower.Controllers
         }
 
         // GET: Monsters/Create
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
-            return View();
+            List<Monster> monsterList = await _repo.GetMonsterList();
+            var viewModel = new MonsterCreateViewModel
+            {
+                Monster = new Monster(),
+                MonsterList = monsterList
+            };
+
+            return View(viewModel);
         }
 
         // POST: Monsters/Create
@@ -63,6 +78,12 @@ namespace TheTower.Controllers
                 return RedirectToAction(nameof(Index));
             }
             return View(monster);
+        }
+
+        [HttpGet]
+        public async Task<Monster> GetMonsterDetails(string index)
+        {
+            return await _repo.GetMonsterByIndex(index);
         }
 
         // GET: Monsters/Edit/5

@@ -127,6 +127,8 @@ namespace TheTower.Migrations
 
                     b.Property<string>("ImagePath");
 
+                    b.Property<string>("Index");
+
                     b.Property<string>("Name");
 
                     b.Property<int>("RollNumber");

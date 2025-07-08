@@ -1,4 +1,4 @@
-﻿@model TheTower.Models.Monster
+﻿@model TheTower.Models.MonsterCreateViewModel
 
 @{
     ViewData["Title"] = "Create";
@@ -13,24 +13,24 @@
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="ChallengeRating" class="control-label"></label>
-                <input asp-for="ChallengeRating" class="form-control" />
-                <span asp-validation-for="ChallengeRating" class="text-danger"></span>
+                <label asp-for="Monster.ChallengeRating" class="control-label"></label>
+                <input asp-for="Monster.ChallengeRating" class="form-control" />
+                <span asp-validation-for="Monster.ChallengeRating" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Name" class="control-label"></label>
-                <input asp-for="Name" class="form-control" />
-                <span asp-validation-for="Name" class="text-danger"></span>
+                <label asp-for="Monster.Name" class="control-label"></label>
+                <input asp-for="Monster.Name" class="form-control" />
+                <span asp-validation-for="Monster.Name" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Source" class="control-label"></label>
-                <input asp-for="Source" class="form-control" />
-                <span asp-validation-for="Source" class="text-danger"></span>
+                <label asp-for="Monster.Source" class="control-label"></label>
+                <input asp-for="Monster.Source" class="form-control" />
+                <span asp-validation-for="Monster.Source" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="RollNumber" class="control-label"></label>
-                <input asp-for="RollNumber" class="form-control" />
-                <span asp-validation-for="RollNumber" class="text-danger"></span>
+                <label asp-for="Monster.RollNumber" class="control-label"></label>
+                <input asp-for="Monster.RollNumber" class="form-control" />
+                <span asp-validation-for="Monster.RollNumber" class="text-danger"></span>
             </div>
             @*<div class="form-group">
                 <label asp-for="ImagePath" class="control-label"></label>
@@ -42,6 +42,19 @@
             </div>
         </form>
     </div>
+    <div class="col-md-4">
+        <h1>Add from name.</h1>
+
+        <label for="monsters">Choose a monster:</label>
+
+        <select id="monsterDropdown" class="form-control">
+            <option value="">-- Select a monster --</option>
+            @foreach (var monster in Model.MonsterList)
+            {
+                <option value="@monster.Index" onclick="AddMonster_Click()">@monster.Name</option>
+            }
+        </select>
+        </div>
 </div>
 
 <div>
@@ -49,5 +62,33 @@
 </div>
 
 @section Scripts {
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script>
+        $('#monsterDropdown').change(function () {
+            var selectedIndex = $(this).val();
+
+            if (selectedIndex) {
+                $.ajax({
+                    url: '/Monsters/GetMonsterDetails', // this should match your route
+                    type: 'GET',
+                    data: { index: selectedIndex },
+                    success: function (monster) {
+                        // Populate form fields
+                       $('[name="Monster.Name"]').val(monster.name);
+                    $('[name="Monster.ChallengeRating"]').val(monster.challenge_rating);
+                    $('[name="Monster.Source"]').val(monster.source);
+                    $('[name="Monster.RollNumber"]').val(monster.rollNumber);
+                    },
+                    error: function () {
+                        alert('Failed to load monster details.');
+                    }
+                });
+            }
+        });
+    </script>
+
+
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }

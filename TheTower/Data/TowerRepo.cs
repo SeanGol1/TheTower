@@ -1,6 +1,9 @@
-﻿using System;
+﻿using Microsoft.CodeAnalysis.CSharp.Syntax;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Threading.Tasks;
 using TheTower.Models;
 
@@ -9,6 +12,7 @@ namespace TheTower.Data
     public class TowerRepo
     {
         private readonly TowerContext _ctx;
+        HttpClient client = new HttpClient();
         public TowerRepo(TowerContext ctx)
         {
             _ctx = ctx;
@@ -95,6 +99,33 @@ namespace TheTower.Data
                 item.CurrentLevel = _newLevel;
             }
             
+        }
+
+        public async Task<List<Monster>> GetMonsterList()
+        {
+            //List<Monster> MonsterList = new List<Monster>();
+            
+            HttpResponseMessage response = await client.GetAsync("https://www.dnd5eapi.co/api/2014/monsters");
+            response.EnsureSuccessStatusCode();
+            string responseBody = await response.Content.ReadAsStringAsync();
+
+            // Deserialize into MonsterResponse object
+            MonsterResponse result = JsonConvert.DeserializeObject<MonsterResponse>(responseBody);
+
+            // Return the list of monsters
+            return result?.Results ?? new List<Monster>();
+
+        }
+
+        public async Task<Monster> GetMonsterByIndex(string index)
+        {
+            var response = await client.GetAsync($"https://www.dnd5eapi.co/api/monsters/{index}");
+            response.EnsureSuccessStatusCode();
+
+            var json = await response.Content.ReadAsStringAsync();
+            Monster monster = JsonConvert.DeserializeObject<Monster>(json);
+
+            return monster;
         }
 
     }

@@ -218,14 +218,14 @@ namespace TheTower.Migrations
             migrationBuilder.DropTable(
                 name: "Session");
         }
-        /*
-        protected void Seed(TowerContext context)
+       
+        /*protected void Seed(TowerContext context)
         {
 
             context.Database.EnsureCreated();
 
-            context.Biome.Add(
-                new Biome() { ID = 1, Name = "Moster Biome", RollNumber = 1, Description = "DM Chooses the closest Monster Biome" },
+            context.Biome.Add(new Biome() { ID = 1, Name = "Moster Biome", RollNumber = 1, Description = "DM Chooses the closest Monster Biome" });
+
                 new Biome() { ID = 2, Name = "Cave", RollNumber = 2, Description = "Mostly Empty Room, Lava Flowing From The Roof" },
                 new Biome() { ID = 3, Name = "Empty Room", RollNumber = 3, Description = "As per the name, the room looks to be empty!" },
                 new Biome() { ID = 4, Name = "Swamp", RollNumber = 4, Description = "Area's have clusters of trees" },
@@ -244,7 +244,7 @@ namespace TheTower.Migrations
 
             context.SaveChanges();
 
-        }
-        */
+        }*/
+     
     }
 }

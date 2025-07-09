@@ -38,7 +38,7 @@ namespace TheTower.Data
             return CRLevel.FirstOrDefault();
         }*/
 
-        public int GetMonsterIDbyRoll(int _rollnumber, int _cr, int _sessionid)
+        public async Task<int> GetMonsterIDbyRoll(int _rollnumber, int _cr, int _sessionid)
         {
             List<Monster> model = null;
             MonsterCR MonCR = null;
@@ -54,13 +54,18 @@ namespace TheTower.Data
                         where mcr.SessionId == _sessionid
                         where mcr.CRRollId == critem.ID
                         select mcr;
-            MonCR = query.FirstOrDefault();            
+            MonCR = query.FirstOrDefault();
 
 
             ////////////////////////
             var result = _ctx.Monster.Where(m => m.ID == MonCR.MonsterId)
                 .Select(m => m.ID)
                 .ToList();
+
+            //List<Monster> monList = await GetMonsterList();
+            //Random rnd = new Random();
+            //int num = rnd.Next(monList.Count);
+
 
             /*var results = from m in _ctx.Monster
                           where m.RollNumber == _rollnumber
@@ -69,6 +74,24 @@ namespace TheTower.Data
 
             return result.FirstOrDefault();
         }
+
+        public async Task<string> GetRndMonsterIndexbyRoll(int _cr)
+        {
+            Monster m = new Monster();
+
+            while (m.ChallengeRating != _cr)
+            {
+                List<Monster> monList = await GetMonsterList();
+                Random rnd = new Random();
+                int num = rnd.Next(monList.Count);
+                m = await GetMonsterByIndex(monList[num].Index);
+            }
+
+            return m.Index;
+
+
+        }
+
 
         public string GetMonsterName(int _monsterID)
         {
@@ -98,13 +121,13 @@ namespace TheTower.Data
             {
                 item.CurrentLevel = _newLevel;
             }
-            
+
         }
 
         public async Task<List<Monster>> GetMonsterList()
         {
             //List<Monster> MonsterList = new List<Monster>();
-            
+
             HttpResponseMessage response = await client.GetAsync("https://www.dnd5eapi.co/api/2014/monsters");
             response.EnsureSuccessStatusCode();
             string responseBody = await response.Content.ReadAsStringAsync();

@@ -234,7 +234,7 @@ namespace TheTower.Controllers
                 _context.Add(session);
                 _context.SaveChanges();
                 Task.Delay(1000).GetAwaiter().GetResult();
-                await GetMonsterList(session);
+                //await GetMonsterList(session);
                 Task.Delay(1000).GetAwaiter().GetResult();
                 await GetMonsterCRRoll(session.ID);
                 return RedirectToAction("AddRestRooms", "Sessions", new { id = session.ID });
@@ -270,59 +270,59 @@ namespace TheTower.Controllers
 
         public List<Monster> TempMonList = new List<Monster>();
         public List<Monster> TempMonCRList = new List<Monster>();
-        public async Task GetMonsterList(Session session)
-        {
-            var query = from m in _context.Monster
-                        select m;
-            List<Monster> MonList = query.ToList();
+        //public async Task GetMonsterList(Session session)
+        //{
+        //    //var query = from m in _context.Monster
+        //    //            select m;
+        //    //List<Monster> MonList = query.ToList();
 
-            List<int> Cr = new List<int>();
+        //    //List<int> Cr = new List<int>();
 
-            Random rd = new Random();
-            foreach (var mon in MonList)
-            {
-                if (mon.XP <= (session.XP * 1.6) && mon.XP >= (session.XP * .3))
-                {
-                    TempMonList.Add(mon);
-                }
-            }
+        //    //Random rd = new Random();
+        //    //foreach (var mon in MonList)
+        //    //{
+        //    //    if (mon.XP <= (session.XP * 1.6) && mon.XP >= (session.XP * .3))
+        //    //    {
+        //    //        TempMonList.Add(mon);
+        //    //    }
+        //    //}
 
-            // Get Highest CR and Lowest CR
-            int high = 0;
-            int low = 100;
-            foreach (var mon in TempMonList)
-            {
-                if (mon.ChallengeRating < low)
-                {
-                    low = mon.ChallengeRating;
-                }
-                else if (mon.ChallengeRating > high)
-                {
-                    high = mon.ChallengeRating;
-                }
-            }
-            //Match CR to Roll Numbers
-            for (int i = 1; i < 21; i++)
-            {
-                CRRoll crEntry = new CRRoll();
-                crEntry.RollNumber = i;
-                crEntry.SessionId = session.ID;
-                crEntry.MonsterQTY = 1;
-                if (i == 20)
-                {
-                    crEntry.XP = high;
-                }
-                else
-                {
-                    crEntry.XP = rd.Next(low, (high - 1));
-                }
-                crEntry.MonsterId = 2;
-                _context.CRRoll.Add(crEntry);
-                //GetMonsterCRRoll(crEntry);
-            }
-            await _context.SaveChangesAsync();
+        //    //// Get Highest CR and Lowest CR
+        //    //double high = 0;
+        //    //double low = 100;
+        //    //foreach (var mon in TempMonList)
+        //    //{
+        //    //    if (mon.ChallengeRating < low)
+        //    //    {
+        //    //        low = mon.ChallengeRating;
+        //    //    }
+        //    //    else if (mon.ChallengeRating > high)
+        //    //    {
+        //    //        high = mon.ChallengeRating;
+        //    //    }
+        //    //}
+        //    ////Match CR to Roll Numbers
+        //    //for (int i = 1; i < 21; i++)
+        //    //{
+        //    //    CRRoll crEntry = new CRRoll();
+        //    //    crEntry.RollNumber = i;
+        //    //    crEntry.SessionId = session.ID;
+        //    //    crEntry.MonsterQTY = 1;
+        //    //    if (i == 20)
+        //    //    {
+        //    //        crEntry.XP = high;
+        //    //    }
+        //    //    else
+        //    //    {
+        //    //        crEntry.XP = rd.Next(low, (high - 1));
+        //    //    }
+        //    //    crEntry.MonsterId = 2;
+        //    //    _context.CRRoll.Add(crEntry);
+        //    //    //GetMonsterCRRoll(crEntry);
+        //    //}
+        //    //await _context.SaveChangesAsync();
 
-        }
+        //}
 
 
         public async Task GetMonsterCRRoll(int sessionid)

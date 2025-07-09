@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("TheTower")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6ccb913cdb2ddc39f60d60b2851cf22326b611b5")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+bddaebeef641af8c9db7aaff0ae49102208d23ec")]
 [assembly: System.Reflection.AssemblyProductAttribute("TheTower")]
 [assembly: System.Reflection.AssemblyTitleAttribute("TheTower")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

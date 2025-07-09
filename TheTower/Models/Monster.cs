@@ -11,7 +11,8 @@ namespace TheTower.Models
         public int ID { get; set; }
         public string Index { get; set; }
         [JsonProperty("challenge_rating")]
-        public int ChallengeRating { get; set; }
+        public double ChallengeRating { get; set; }
+        [JsonProperty("xp")]
         public int XP { get; set; }
         public string Name { get; set; }
         public string Source { get; set; }

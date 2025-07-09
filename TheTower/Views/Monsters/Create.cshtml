@@ -23,9 +23,9 @@
                 <span asp-validation-for="Monster.Name" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Monster.Source" class="control-label"></label>
-                <input asp-for="Monster.Source" class="form-control" />
-                <span asp-validation-for="Monster.Source" class="text-danger"></span>
+                <label asp-for="Monster.XP" class="control-label"></label>
+                <input asp-for="Monster.XP" class="form-control" />
+                <span asp-validation-for="Monster.XP" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Monster.RollNumber" class="control-label"></label>
@@ -78,7 +78,7 @@
                         // Populate form fields
                        $('[name="Monster.Name"]').val(monster.name);
                     $('[name="Monster.ChallengeRating"]').val(monster.challenge_rating);
-                    $('[name="Monster.Source"]').val(monster.source);
+                    $('[name="Monster.XP"]').val(monster.xp);
                     $('[name="Monster.RollNumber"]').val(monster.rollNumber);
                     },
                     error: function () {

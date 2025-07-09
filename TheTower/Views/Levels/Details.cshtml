@@ -135,7 +135,7 @@
             var monroll = $("#txtMonsterRoll").val();
             var CRroll = $("#txtMonRoll").val(); 
             $("#divMonDet").load("/Levels/GetMonDetails",
-                { id: @Model.ID });
+                { id: @Model.MonsterIndex });
         });
 
         $("#btnEventDetails").click(function () {

@@ -153,33 +153,37 @@ namespace TheTower.Controllers
             return PartialView("_GetMonCRListView", model);
         }
         //After the Gen button is clicked on Monster, find out what Monster will be next given the dice roll number.
-        public ActionResult GetNewMonDetail(int roll, int sessionid, int cr)
+        public async Task<ActionResult> GetNewMonDetail(int roll, int sessionid, int cr)
         {
-            List<Monster> model = null;
-            List<MonsterCR> CRDet = null;
 
-            var query3 = from c in _context.CRRoll
-                         where c.SessionId == sessionid
-                         where c.RollNumber == cr
-                         select c;
-            CRRoll critem = query3.FirstOrDefault();
+            Monster m = await _repo.GetMonsterByIndex(await _repo.GetRndMonsterIndexbyRoll(cr));
+            
+            
+            //List<Monster> model = null;
+            //List<MonsterCR> CRDet = null;
 
-            var query = from mcr in _context.MonsterCR
-                        where mcr.RollNo == roll
-                        where mcr.SessionId == sessionid
-                        where mcr.CRRollId == critem.ID
-                        select mcr;
-            CRDet = query.ToList();
-            foreach (var item in CRDet)
-            {
-                var query2 = from m in _context.Monster
-                             where m.ID == item.MonsterId
-                             select m;
-                model = query2.ToList();
-            }
+            //var query3 = from c in _context.CRRoll
+            //             where c.SessionId == sessionid
+            //             where c.RollNumber == cr
+            //             select c;
+            //CRRoll critem = query3.FirstOrDefault();
+
+            //var query = from mcr in _context.MonsterCR
+            //            where mcr.RollNo == roll
+            //            where mcr.SessionId == sessionid
+            //            where mcr.CRRollId == critem.ID
+            //            select mcr;
+            //CRDet = query.ToList();
+            //foreach (var item in CRDet)
+            //{
+            //    var query2 = from m in _context.Monster
+            //                 where m.ID == item.MonsterId
+            //                 select m;
+            //    model = query2.ToList();
+            //}
 
             ViewBag.Roll = roll;
-            return PartialView("_MonsterDetailsView", model);
+            return PartialView("_MonsterDetailsView", m);
         }
 
         /*public ActionResult GetMonQTYinput(int cr)
@@ -196,15 +200,10 @@ namespace TheTower.Controllers
         //
         //Levels/Details Ajax Calls
         //
-        public ActionResult GetMonDetails(int id)
+        public async Task<ActionResult> GetMonDetails(string id)
         {
-            List<Monster> model = null;
 
-            var query = from m in _context.Monster 
-                        join l in _context.Level on m.ID equals l.MonsterID
-                        where l.ID == id
-                        select m;
-            model = query.ToList();
+            Monster model = await _repo.GetMonsterByIndex(id);
 
             return PartialView("_GetMonsterView", model);
         }
@@ -380,7 +379,8 @@ namespace TheTower.Controllers
             {
                 level.SessionID = id;
                 //level.CRLevel = _repo.GetCRLevel(level.SessionID, level.CRLevel);
-                level.MonsterID = _repo.GetMonsterIDbyRoll(level.MonsterID, level.CRLevel, level.SessionID);
+                //level.MonsterID = await _repo.GetMonsterIDbyRoll(level.MonsterID, level.CRLevel, level.SessionID);
+                level.MonsterIndex = await _repo.GetRndMonsterIndexbyRoll(level.CRLevel);
                 level.Name = _repo.GetMonsterName(level.MonsterID);
 
                 int RoomMove = 0;

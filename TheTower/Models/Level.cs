@@ -9,6 +9,7 @@ namespace TheTower.Models
     {
         public int ID { get; set; }
         public int MonsterID { get; set; }
+        public string MonsterIndex { get; set; }
         public int RoomLevel{ get; set; }
         public int BiomeID { get; set; }
         public int EventID { get; set; }
